@@ -12,14 +12,14 @@ export const Header = () => {
       <div className={styles.brand}>
         <h1>Calendar</h1>
       </div>
-      <button className={styles["show-today"]}>Today</button>
-      <button className={styles["previous-week"]}>
+      <button className={styles.showToday}>Today</button>
+      <button className={styles.previousWeek}>
         <NavigateBefore />
       </button>
-      <button className={styles["next-week"]}>
+      <button className={styles.nextWeek}>
         <NavigateNext />
       </button>
-      <div className={styles["current-date"]}>
+      <div className={styles.currentDate}>
         <span>current date</span>
       </div>
     </header>

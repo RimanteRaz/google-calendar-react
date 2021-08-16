@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   padding: 10px 5px;
-  border-bottom: 1px solid $border;
+  border-bottom: 1px solid $border-color;
 }
 
 .burger,
@@ -35,16 +35,16 @@
 }
 
 .burger:hover,
-.show-today:hover,
-.previous-week:hover,
-.next-week:hover {
+.showToday:hover,
+.previousWeek:hover,
+.nextWeek:hover {
   background-color: $hover-bg;
   cursor: pointer;
 }
 
-.show-today {
+.showToday {
   background-color: transparent;
-  border: 1px solid $border;
+  border: 1px solid $border-color;
   padding: 11px 12px 10px 12px;
   border-radius: 4px;
   font-size: 93%;
@@ -52,8 +52,8 @@
   margin-right: 30px;
 }
 
-.previous-week,
-.next-week {
+.previousWeek,
+.nextWeek {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,15 +64,15 @@
   color: $medium-text-color;
 }
 
-.previous-week {
+.previousWeek {
   margin-right: 2px;
 }
 
-.next-week {
+.nextWeek {
   margin-right: 15px;
 }
 
-.current-date {
+.currentDate {
   font-size: 20px;
   color: $dark-text-color;
   margin-right: 10px;

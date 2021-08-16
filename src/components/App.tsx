@@ -3,7 +3,7 @@ import { Header } from "./header";
 
 function App() {
   return (
-    <div className={styles.App}>
+    <div className={styles.app}>
       <Header />
     </div>
   );
