@@ -1,11 +1,10 @@
-import "./App.scss";
+import styles from "./App.module.scss";
+import { Header } from "./header";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello world!</p>
-      </header>
+    <div className={styles.app}>
+      <Header />
     </div>
   );
 }
