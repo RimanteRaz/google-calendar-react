@@ -2,8 +2,13 @@ import styles from "./Header.module.scss";
 import Menu from "@material-ui/icons/Menu";
 import NavigateBefore from "@material-ui/icons/NavigateBefore";
 import NavigateNext from "@material-ui/icons/NavigateNext";
+import { useSelector } from "react-redux";
+import type { State } from "../../reducer";
+import { getMonthAndYear } from "../../utilities/dates";
 
 export const Header = () => {
+  const selectedDay = useSelector((state: State) => state.selectedDay);
+
   return (
     <header className={styles.header}>
       <div className={styles.burger}>
@@ -20,7 +25,7 @@ export const Header = () => {
         <NavigateNext />
       </button>
       <div className={styles.currentDate}>
-        <span>current date</span>
+        <span>{getMonthAndYear(selectedDay)}</span>
       </div>
     </header>
   );
