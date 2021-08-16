@@ -1,5 +1,5 @@
 import styles from "./App.module.scss";
-import { Header } from "./header/Header"; // pasidaryti index.ts header foldery
+import { Header } from "./header";
 
 function App() {
   return (
