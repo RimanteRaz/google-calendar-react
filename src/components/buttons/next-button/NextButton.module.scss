@@ -1,0 +1,16 @@
+@import "../../../utilities/colours";
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  border: none;
+  border-radius: 20px;
+  background-color: transparent;
+  color: $medium-text-color;
+  &:hover {
+    background-color: $hover-bg;
+    cursor: pointer;
+  }
+}

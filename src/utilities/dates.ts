@@ -1,3 +1,5 @@
+const DAYS_IN_A_WEEK = 7;
+
 const getStartOfWeek = (today: Date) => {
   const date = new Date(today.toString());
   const pastSunday = date.setDate(date.getDate() - date.getDay());
@@ -41,4 +43,16 @@ export const getMonthAndYear = (date: Date) => {
     const startMonthLong = getMonthName(startOfWeek);
     return `${startMonthLong} ${startYear}`;
   }
+};
+
+export const getDayAWeekLater = (date: Date) => {
+  const weekLater = new Date(date);
+  weekLater.setDate(date.getDate() + DAYS_IN_A_WEEK);
+  return new Date(weekLater);
+};
+
+export const getDayAWeekAgo = (date: Date) => {
+  const weekAgo = new Date(date);
+  weekAgo.setDate(date.getDate() - DAYS_IN_A_WEEK);
+  return new Date(weekAgo);
 };
