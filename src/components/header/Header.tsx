@@ -1,23 +1,26 @@
 import styles from "./Header.module.scss";
+import Menu from "@material-ui/icons/Menu";
+import NavigateBefore from "@material-ui/icons/NavigateBefore";
+import NavigateNext from "@material-ui/icons/NavigateNext";
 
 export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.burger}>
-        <span className="material-icons-outlined"> menu </span>
+        <Menu />
       </div>
       <div className={styles.brand}>
         <h1>Calendar</h1>
       </div>
       <button className={styles["show-today"]}>Today</button>
       <button className={styles["previous-week"]}>
-        <span className="material-icons-outlined"> navigate_before </span>
+        <NavigateBefore />
       </button>
       <button className={styles["next-week"]}>
-        <span className="material-icons-outlined"> navigate_next </span>
+        <NavigateNext />
       </button>
       <div className={styles["current-date"]}>
-        <span>Jun - Jul 2021</span>
+        <span>current date</span>
       </div>
     </header>
   );
