@@ -1,11 +1,10 @@
-import "./App.scss";
+import styles from "./App.module.scss";
+import { Header } from "./header/Header"; // pasidaryti index.ts header foldery
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello world!</p>
-      </header>
+    <div className={styles.App}>
+      <Header />
     </div>
   );
 }
