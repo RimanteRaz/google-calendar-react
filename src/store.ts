@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { dateReducer } from "./reducers";
+import { reducer } from "./reducer";
 
-export const store = createStore(dateReducer, applyMiddleware(thunk));
+export const store = createStore(reducer, applyMiddleware(thunk));
 
 export type State = {
   selectedDay: Date;
