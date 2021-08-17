@@ -1,22 +1,14 @@
-import { NEXT_WEEK, PREVIOUS_WEEK, TODAY } from "./actions";
-import { getDayAWeekLater, getDayAWeekAgo } from "./utilities/dates";
+import { AnyAction } from "redux";
+import { CHANGE_DATE } from "./actions";
 
 const initialState = { selectedDay: new Date() };
 
-export const reducer = (state = initialState, action: { type: string }) => {
+export const reducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
-    case NEXT_WEEK:
-      return Object.assign({}, state, { selectedDay: getDayAWeekLater(state.selectedDay) });
-
-    case PREVIOUS_WEEK:
-      return Object.assign({}, state, { selectedDay: getDayAWeekAgo(state.selectedDay) });
-
-    case TODAY:
-      return Object.assign({}, state, { selectedDay: new Date() });
+    case CHANGE_DATE:
+      return Object.assign({}, state, { selectedDay: action.payload });
 
     default:
       return state;
   }
 };
-
-export type State = ReturnType<typeof reducer>;

@@ -1,7 +1,7 @@
 import styles from "./Header.module.scss";
 import Menu from "@material-ui/icons/Menu";
 import { useDispatch, useSelector } from "react-redux";
-import type { State } from "../../reducer";
+import type { State } from "../../store";
 import { getMonthAndYear } from "../../utilities/dates";
 import { nextWeek, previousWeek, today } from "../../actions";
 import { RoundButton } from "../buttons/round-button";
