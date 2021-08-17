@@ -34,20 +34,9 @@
   }
 }
 
-.burger:hover,
-.showToday:hover {
+.burger:hover {
   background-color: $hover-bg;
   cursor: pointer;
-}
-
-.showToday {
-  background-color: transparent;
-  border: 1px solid $border-color;
-  padding: 11px 12px 10px 12px;
-  border-radius: 4px;
-  font-size: 93%;
-  color: $dark-text-color;
-  margin-right: 30px;
 }
 
 .currentDate {
