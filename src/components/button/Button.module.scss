@@ -1,0 +1,30 @@
+@import "../../utilities/colours";
+
+.round {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  border: none;
+  border-radius: 20px;
+  background-color: transparent;
+  color: $medium-text-color;
+  &:hover {
+    background-color: $hover-bg;
+    cursor: pointer;
+  }
+}
+
+.squareOutline {
+  background-color: transparent;
+  border: 1px solid $border-color;
+  padding: 11px 12px 10px 12px;
+  border-radius: 4px;
+  font-size: 93%;
+  color: $dark-text-color;
+  margin-right: 30px;
+  &:hover {
+    background-color: $hover-bg;
+    cursor: pointer;
+  }
+}

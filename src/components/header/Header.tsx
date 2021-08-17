@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { State } from "../../store";
 import { getMonthAndYear } from "../../utilities/dates";
 import { nextWeek, previousWeek, today } from "../../actions";
-import { RoundButton } from "../buttons/round-button";
+import { Button } from "../button";
 import NavigateBefore from "@material-ui/icons/NavigateBefore";
 import NavigateNext from "@material-ui/icons/NavigateNext";
 
@@ -17,20 +17,22 @@ export const Header = () => {
       <div className={styles.burger}>
         <Menu />
       </div>
+
       <div className={styles.brand}>
         <h1>Calendar</h1>
       </div>
-      <button onClick={() => dispatch(today())} className={styles.showToday}>
+
+      <Button handleClick={() => dispatch(today())} styleName={"squareOutline"}>
         Today
-      </button>
+      </Button>
 
-      <RoundButton handleClick={() => dispatch(previousWeek())}>
+      <Button handleClick={() => dispatch(previousWeek())} styleName={"round"}>
         <NavigateBefore />
-      </RoundButton>
+      </Button>
 
-      <RoundButton handleClick={() => dispatch(nextWeek())}>
+      <Button handleClick={() => dispatch(nextWeek())} styleName={"round"}>
         <NavigateNext />
-      </RoundButton>
+      </Button>
 
       <div className={styles.currentDate}>
         <span>{getMonthAndYear(selectedDay)}</span>
