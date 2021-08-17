@@ -1,7 +1,7 @@
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { State } from "./store";
-import { getDayAWeekAgo, getDayAWeekLater } from "./utilities/dates";
+import { State } from "../store";
+import { getDayAWeekAgo, getDayAWeekLater } from "../utilities/dates";
 
 export const CHANGE_DATE = "CHANGE_DATE";
 
