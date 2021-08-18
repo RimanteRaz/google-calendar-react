@@ -67,3 +67,15 @@ export const isSameDay = (firstDate: Date, secondDate: Date) => {
   const secondDateStart = new Date(secondDate.toString()).setHours(0, 0, 0, 0);
   return firstDateStart === secondDateStart;
 };
+
+export const incrementMonth = (date: Date) => {
+  const newDate = new Date(date.toString());
+  newDate.setMonth(date.getMonth() + 1);
+  return new Date(newDate);
+};
+
+export const decrementMonth = (date: Date) => {
+  const newDate = new Date(date.toString());
+  newDate.setMonth(date.getMonth() - 1);
+  return new Date(newDate);
+};

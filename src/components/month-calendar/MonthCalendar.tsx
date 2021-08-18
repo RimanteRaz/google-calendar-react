@@ -4,22 +4,29 @@ import { State } from "../../store";
 import { DAYS_IN_A_WEEK } from "../../utilities/dates";
 import { DayButton } from "./day-button";
 import { Header } from "./header";
+import { useState } from "react";
+import { Weekdays } from "./weekdays";
+import { useEffect } from "react";
 
 const ROWS_IN_CALENDAR = 6;
 
 export const MonthCalendar = () => {
   const selectedDay = useSelector((state: State) => state.selectedDay);
+  const [displayDate, setDisplayDate] = useState(selectedDay);
 
-  const weekdayNames = ["S", "M", "T", "W", "T", "F", "S"];
-  const weekdays = weekdayNames.map((weekday, index) => <span key={index}>{weekday}</span>);
+  useEffect(() => {
+    setDisplayDate(selectedDay);
+  }, [selectedDay]);
 
-  const datesToDisplay = getDatesToDisplay(selectedDay);
-  const days = datesToDisplay.map(date => <DayButton key={date.getTime()} elementDate={date} />);
+  const datesToDisplay = getDatesToDisplay(displayDate);
+  const days = datesToDisplay.map(date => (
+    <DayButton key={date.getTime()} elementDate={date} displayDate={displayDate} />
+  ));
 
   return (
     <div className={styles.sidebarMonthView}>
-      <Header />
-      <div className={styles.weekdayNames}>{weekdays}</div>
+      <Header date={displayDate} setDisplayDate={setDisplayDate} />
+      <Weekdays />
       <div className={styles.days}>{days}</div>
     </div>
   );
@@ -42,7 +49,9 @@ const getDatesToDisplay = (date: Date) => {
 const getFirstDayOfCalendar = (date: Date) => {
   const firstDayOfMonth = new Date(date.toString());
   firstDayOfMonth.setDate(1);
+
   const firstDayOfCalendar = new Date(firstDayOfMonth.toString());
   firstDayOfCalendar.setDate(1 - firstDayOfMonth.getDay());
+
   return firstDayOfCalendar;
 };

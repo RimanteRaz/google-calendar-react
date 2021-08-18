@@ -4,16 +4,6 @@
   margin: 0px 5px;
 }
 
-.weekdayNames {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  font-size: 65%;
-  padding-right: 1px;
-  color: $light-text-color;
-  margin-bottom: 10px;
-}
-
 .days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
