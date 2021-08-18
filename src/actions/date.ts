@@ -1,4 +1,4 @@
-import { PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction } from "../types";
 import { ThunkAction } from "redux-thunk";
 import { State } from "../store";
 import { getDayAWeekAgo, getDayAWeekLater } from "../utilities/dates";

@@ -1,4 +1,4 @@
-import { PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction } from "../types";
 import { CHANGE_DATE } from "../actions";
 
 const initialState = { selectedDay: new Date() };
