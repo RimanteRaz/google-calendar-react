@@ -1,0 +1,33 @@
+@import "../../utilities/colours";
+
+.button {
+  background-color: transparent;
+  border: none;
+  width: 23px;
+  height: 23px;
+  border-radius: 15px;
+  &:hover {
+    background-color: $hover-bg;
+    cursor: pointer;
+  }
+}
+
+.selectedDay {
+  background-color: $blue-lighter;
+  color: $blue-darker;
+  &:hover {
+    background-color: $blue-light;
+  }
+}
+
+.currentDay {
+  background-color: $blue;
+  color: white;
+  &:hover {
+    background-color: $blue-darker;
+  }
+}
+
+.other-month {
+  color: $light-text-color;
+}
