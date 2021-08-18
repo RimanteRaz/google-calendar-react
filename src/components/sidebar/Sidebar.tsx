@@ -1,12 +1,14 @@
 import styles from "./Sidebar.module.scss";
+import { Button } from "../button";
+import AddIcon from "@material-ui/icons/Add";
 
 export const Sidebar = () => {
   return (
     <aside className={styles.sidebar}>
-      <button className="create-event">
-        <span className="material-icons-outlined"> add </span>
+      <Button onClick={() => {}} styleName={"big"}>
+        <AddIcon style={{ marginRight: "8px" }} />
         <span className="label">Create</span>
-      </button>
+      </Button>
       <div className="sidebar-month-view">
         <div className="navigate">
           <span className="current-month">June 2021</span>

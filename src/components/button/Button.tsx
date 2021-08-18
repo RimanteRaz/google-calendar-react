@@ -10,6 +10,6 @@ export const Button = ({ onClick, styleName, children }: Props) => {
 
 type Props = {
   onClick: () => void;
-  styleName: "round" | "squareOutline";
-  children: JSX.Element | string;
+  styleName: "round" | "squareOutline" | "big";
+  children: JSX.Element | string | JSX.Element[];
 };
