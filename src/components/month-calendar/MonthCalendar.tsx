@@ -1,44 +1,25 @@
-import { Button } from "../button";
 import styles from "./MonthCalendar.module.scss";
-import NavigateBefore from "@material-ui/icons/NavigateBefore";
-import NavigateNext from "@material-ui/icons/NavigateNext";
 import { useSelector } from "react-redux";
 import { State } from "../../store";
-import { DAYS_IN_A_WEEK, getMonthName } from "../../utilities/dates";
-import { DayButton } from "../day-button";
+import { DAYS_IN_A_WEEK } from "../../utilities/dates";
+import { DayButton } from "./day-button";
+import { Header } from "./header";
 
 const ROWS_IN_CALENDAR = 6;
 
 export const MonthCalendar = () => {
   const selectedDay = useSelector((state: State) => state.selectedDay);
-  const headerDate = `${getMonthName(selectedDay)} ${selectedDay.getFullYear()}`;
 
   const weekdayNames = ["S", "M", "T", "W", "T", "F", "S"];
   const weekdays = weekdayNames.map((weekday, index) => <span key={index}>{weekday}</span>);
 
   const datesToDisplay = getDatesToDisplay(selectedDay);
-  const days = datesToDisplay.map(date => (
-    <DayButton key={date.getTime()} elementDate={date}></DayButton>
-  ));
+  const days = datesToDisplay.map(date => <DayButton key={date.getTime()} elementDate={date} />);
 
   return (
     <div className={styles.sidebarMonthView}>
-      <div className={styles.header}>
-        <span className={styles.currentMonth}>{headerDate}</span>
-
-        <div className={styles.navigation}>
-          <Button onClick={() => {}} styleName="round">
-            <NavigateBefore />
-          </Button>
-
-          <Button onClick={() => {}} styleName="round">
-            <NavigateNext />
-          </Button>
-        </div>
-      </div>
-
+      <Header />
       <div className={styles.weekdayNames}>{weekdays}</div>
-
       <div className={styles.days}>{days}</div>
     </div>
   );

@@ -4,22 +4,6 @@
   margin: 0px 5px;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  padding-left: 8px;
-  margin-bottom: 5px;
-}
-
-.header .currentMonth {
-  color: $dark-text-color;
-}
-
-.navigation {
-  display: flex;
-  margin-left: auto;
-}
-
 .weekdayNames {
   display: grid;
   grid-template-columns: repeat(7, 1fr);

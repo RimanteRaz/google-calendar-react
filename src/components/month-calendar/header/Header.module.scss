@@ -1,0 +1,17 @@
+@import "../../../utilities/colours";
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  margin-bottom: 5px;
+}
+
+.header .currentMonth {
+  color: $dark-text-color;
+}
+
+.navigation {
+  display: flex;
+  margin-left: auto;
+}

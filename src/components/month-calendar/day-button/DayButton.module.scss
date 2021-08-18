@@ -1,4 +1,4 @@
-@import "../../utilities/colours";
+@import "../../../utilities/colours";
 
 .button {
   background-color: transparent;
@@ -6,6 +6,8 @@
   width: 23px;
   height: 23px;
   border-radius: 15px;
+  color: $dark-text-color;
+  font-size: 11px;
   &:hover {
     background-color: $hover-bg;
     cursor: pointer;
@@ -28,6 +30,6 @@
   }
 }
 
-.other-month {
+.otherMonth {
   color: $light-text-color;
 }
