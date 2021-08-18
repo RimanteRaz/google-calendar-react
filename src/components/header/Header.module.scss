@@ -34,46 +34,14 @@
   }
 }
 
-.burger:hover,
-.showToday:hover,
-.previousWeek:hover,
-.nextWeek:hover {
+.burger:hover {
   background-color: $hover-bg;
   cursor: pointer;
-}
-
-.showToday {
-  background-color: transparent;
-  border: 1px solid $border-color;
-  padding: 11px 12px 10px 12px;
-  border-radius: 4px;
-  font-size: 93%;
-  color: $dark-text-color;
-  margin-right: 30px;
-}
-
-.previousWeek,
-.nextWeek {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3px;
-  border: none;
-  border-radius: 20px;
-  background-color: transparent;
-  color: $medium-text-color;
-}
-
-.previousWeek {
-  margin-right: 2px;
-}
-
-.nextWeek {
-  margin-right: 15px;
 }
 
 .currentDate {
   font-size: 20px;
   color: $dark-text-color;
+  margin-left: 20px;
   margin-right: 10px;
 }
