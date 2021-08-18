@@ -1,15 +1,15 @@
 import styles from "./Button.module.scss";
 
-export const Button = ({ handleClick, styleName, children }: Props) => {
+export const Button = ({ onClick, styleName, children }: Props) => {
   return (
-    <button onClick={handleClick} className={styles[styleName]}>
+    <button onClick={onClick} className={styles[styleName]}>
       {children}
     </button>
   );
 };
 
 type Props = {
-  handleClick: () => void;
+  onClick: () => void;
   styleName: "round" | "squareOutline";
   children: JSX.Element | string;
 };

@@ -22,15 +22,15 @@ export const Header = () => {
         <h1>Calendar</h1>
       </div>
 
-      <Button handleClick={() => dispatch(today())} styleName={"squareOutline"}>
+      <Button onClick={() => dispatch(today())} styleName={"squareOutline"}>
         Today
       </Button>
 
-      <Button handleClick={() => dispatch(previousWeek())} styleName={"round"}>
+      <Button onClick={() => dispatch(previousWeek())} styleName={"round"}>
         <NavigateBefore />
       </Button>
 
-      <Button handleClick={() => dispatch(nextWeek())} styleName={"round"}>
+      <Button onClick={() => dispatch(nextWeek())} styleName={"round"}>
         <NavigateNext />
       </Button>
 
