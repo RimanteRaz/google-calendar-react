@@ -101,3 +101,7 @@ export const getHourLabel = (hours: number) => {
   };
   return new Intl.DateTimeFormat("en-GB", timeFormatOptions).format(date).toUpperCase();
 };
+
+export const getHourKey = (date: Date, hour: number) => {
+  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${hour}`;
+};
