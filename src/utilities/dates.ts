@@ -1,4 +1,5 @@
 export const DAYS_IN_A_WEEK = 7;
+export const HOURS_IN_DAY = 24;
 
 export const getStartOfWeek = (today: Date) => {
   const date = new Date(today.toString());
@@ -86,4 +87,17 @@ export const getWeekdayLabel = (date: Date) => {
   };
   const dateText = new Intl.DateTimeFormat("en-GB", dateFormatOptions).format(date);
   return dateText.toUpperCase();
+};
+
+export const getHourLabel = (hours: number) => {
+  if (hours === 24) {
+    return "";
+  }
+  const date = new Date();
+  date.setHours(hours);
+  const timeFormatOptions: Intl.DateTimeFormatOptions = {
+    hour12: true,
+    hour: "numeric",
+  };
+  return new Intl.DateTimeFormat("en-GB", timeFormatOptions).format(date).toUpperCase();
 };

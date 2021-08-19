@@ -3,15 +3,17 @@ import { Weekday } from "./weekday";
 import { useSelector } from "react-redux";
 import { State } from "../../store";
 import { DAYS_IN_A_WEEK, getStartOfWeek } from "../../utilities/dates";
+import { EventGrid } from "./event-grid";
+import { HourScale } from "./hour-scale";
 
 export const WeekCalendar = () => {
   const selectedDay = useSelector((state: State) => state.selectedDay);
 
   const firstDayOfWeek = getStartOfWeek(selectedDay);
-  const datesToDisplay = new Array(DAYS_IN_A_WEEK);
+  const datesToDisplay = [...Array(DAYS_IN_A_WEEK)];
 
-  const weekdays = datesToDisplay.fill(firstDayOfWeek).map((date, index) => {
-    const elementDate = new Date(date);
+  const weekdays = datesToDisplay.map((_, index) => {
+    const elementDate = new Date(firstDayOfWeek);
     elementDate.setDate(elementDate.getDate() + index);
     return <Weekday key={elementDate.getTime()} elementDate={elementDate} />;
   });
@@ -22,8 +24,10 @@ export const WeekCalendar = () => {
         <div className={styles.timezone}>GMT+03</div>
         {weekdays}
       </div>
-
-      <div className="events"></div>
+      <div className={styles.main}>
+        <HourScale />
+        <EventGrid />
+      </div>
     </div>
   );
 };

@@ -1,0 +1,28 @@
+@import "../../../utilities/colours";
+
+.timeScale {
+  width: 55px;
+}
+
+.hour {
+  position: relative;
+  height: 40px;
+  span {
+    position: absolute;
+    bottom: -5px;
+    right: 17px;
+    font-size: 9px;
+    font-weight: 300;
+    color: $light-text-color;
+  }
+}
+
+.hour::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  height: 1px;
+  background-color: $border-color;
+}

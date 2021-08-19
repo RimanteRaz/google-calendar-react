@@ -30,3 +30,10 @@
   width: 10px;
   background-color: $border-color;
 }
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  overflow-x: scroll;
+  position: relative;
+}
