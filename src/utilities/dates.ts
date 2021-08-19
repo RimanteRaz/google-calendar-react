@@ -1,6 +1,6 @@
 export const DAYS_IN_A_WEEK = 7;
 
-const getStartOfWeek = (today: Date) => {
+export const getStartOfWeek = (today: Date) => {
   const date = new Date(today.toString());
   const pastSunday = date.setDate(date.getDate() - date.getDay());
   return new Date(pastSunday);
@@ -78,4 +78,12 @@ export const decrementMonth = (date: Date) => {
   const newDate = new Date(date.toString());
   newDate.setMonth(date.getMonth() - 1);
   return newDate;
+};
+
+export const getWeekdayLabel = (date: Date) => {
+  const dateFormatOptions: Intl.DateTimeFormatOptions = {
+    weekday: "short",
+  };
+  const dateText = new Intl.DateTimeFormat("en-GB", dateFormatOptions).format(date);
+  return dateText.toUpperCase();
 };
