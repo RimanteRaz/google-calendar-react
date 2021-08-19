@@ -1,0 +1,15 @@
+@import "../../utilities/colours";
+
+.sidebarMonthView {
+  margin: 0px 5px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+  row-gap: 2px;
+  font-size: 65%;
+  padding-right: 1px;
+  color: $medium-text-color;
+}

@@ -1,4 +1,4 @@
-const DAYS_IN_A_WEEK = 7;
+export const DAYS_IN_A_WEEK = 7;
 
 const getStartOfWeek = (today: Date) => {
   const date = new Date(today.toString());
@@ -17,7 +17,7 @@ const getShortMonthName = (date: Date) => {
   return monthShort.format(date);
 };
 
-const getMonthName = (date: Date) => {
+export const getMonthName = (date: Date) => {
   const monthLong = new Intl.DateTimeFormat("en-GB", { month: "long" });
   return monthLong.format(date);
 };
@@ -55,4 +55,27 @@ export const getDayAWeekAgo = (date: Date) => {
   const weekAgo = new Date(date);
   weekAgo.setDate(date.getDate() - DAYS_IN_A_WEEK);
   return new Date(weekAgo);
+};
+
+export const isToday = (date: Date) => {
+  const today = new Date();
+  return isSameDay(today, date);
+};
+
+export const isSameDay = (firstDate: Date, secondDate: Date) => {
+  const firstDateStart = new Date(firstDate.toString()).setHours(0, 0, 0, 0);
+  const secondDateStart = new Date(secondDate.toString()).setHours(0, 0, 0, 0);
+  return firstDateStart === secondDateStart;
+};
+
+export const incrementMonth = (date: Date) => {
+  const newDate = new Date(date.toString());
+  newDate.setMonth(date.getMonth() + 1);
+  return newDate;
+};
+
+export const decrementMonth = (date: Date) => {
+  const newDate = new Date(date.toString());
+  newDate.setMonth(date.getMonth() - 1);
+  return newDate;
 };
