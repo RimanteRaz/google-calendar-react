@@ -4,7 +4,7 @@ import { decrementMonth, getMonthName, incrementMonth } from "../../../utilities
 import { Button } from "../../button";
 import styles from "./Header.module.scss";
 
-export const Header = ({ date, setDisplayDate }: Props) => {
+export const Header = ({ date, setDisplayDate }: HeaderProps) => {
   const headerDate = `${getMonthName(date)} ${date.getFullYear()}`;
 
   const showNextMonth = () => setDisplayDate(date => incrementMonth(date));
@@ -15,11 +15,11 @@ export const Header = ({ date, setDisplayDate }: Props) => {
       <span className={styles.currentMonth}>{headerDate}</span>
 
       <div className={styles.navigation}>
-        <Button onClick={showNextMonth} styleName="round">
+        <Button onClick={showPreviousMonth} styleName="round">
           <NavigateBefore />
         </Button>
 
-        <Button onClick={showPreviousMonth} styleName="round">
+        <Button onClick={showNextMonth} styleName="round">
           <NavigateNext />
         </Button>
       </div>
@@ -27,7 +27,7 @@ export const Header = ({ date, setDisplayDate }: Props) => {
   );
 };
 
-type Props = {
+type HeaderProps = {
   date: Date;
   setDisplayDate: React.Dispatch<React.SetStateAction<Date>>;
 };

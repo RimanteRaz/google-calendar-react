@@ -71,11 +71,11 @@ export const isSameDay = (firstDate: Date, secondDate: Date) => {
 export const incrementMonth = (date: Date) => {
   const newDate = new Date(date.toString());
   newDate.setMonth(date.getMonth() + 1);
-  return new Date(newDate);
+  return newDate;
 };
 
 export const decrementMonth = (date: Date) => {
   const newDate = new Date(date.toString());
   newDate.setMonth(date.getMonth() - 1);
-  return new Date(newDate);
+  return newDate;
 };

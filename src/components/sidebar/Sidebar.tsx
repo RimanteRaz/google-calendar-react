@@ -8,7 +8,7 @@ export const Sidebar = () => {
     <aside className={styles.sidebar}>
       <Button onClick={() => {}} styleName={"big"}>
         <AddIcon style={{ marginRight: "8px" }} />
-        <span className="label">Create</span>
+        <span>Create</span>
       </Button>
       <MonthCalendar />
     </aside>

@@ -5,7 +5,7 @@ import { isToday, isSameDay } from "../../../utilities/dates";
 import classNames from "classnames";
 import { changeDate } from "../../../actions/date";
 
-export const DayButton = ({ elementDate, displayDate }: Props) => {
+export const DayButton = ({ elementDate, displayDate }: DayButtonProps) => {
   const selectedDay = useSelector((state: State) => state.selectedDay);
   const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ export const DayButton = ({ elementDate, displayDate }: Props) => {
   );
 };
 
-type Props = {
+type DayButtonProps = {
   elementDate: Date;
   displayDate: Date;
 };
