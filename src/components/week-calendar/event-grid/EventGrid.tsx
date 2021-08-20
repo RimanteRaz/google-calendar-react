@@ -19,7 +19,6 @@ export const EventGrid = () => {
         const eventGridCol = hoursInDay.map((_, index) => {
           const hour = index + 1;
           const key = getHourKey(columnDate, hour);
-          console.log(key);
           return <div key={key} className={styles.timeSlot}></div>;
         });
 

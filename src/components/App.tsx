@@ -1,4 +1,5 @@
 import styles from "./App.module.scss";
+import { EventCreationModal } from "./event-creation-modal";
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
 import { WeekCalendar } from "./week-calendar";
@@ -11,6 +12,7 @@ function App() {
         <Sidebar />
         <WeekCalendar />
       </div>
+      <EventCreationModal />
     </div>
   );
 }

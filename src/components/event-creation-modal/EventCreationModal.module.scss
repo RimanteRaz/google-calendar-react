@@ -1,0 +1,33 @@
+.container {
+  // display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20vh;
+  left: 0;
+  right: 0;
+  width: 500px;
+  border: 1px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px 10px rgba(94, 94, 94, 0.15);
+  z-index: 10;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #f1f3f4;
+  padding: 2px 10px;
+}
+
+.body {
+  padding: 40px 15px 20px 15px;
+  background-color: white;
+}
