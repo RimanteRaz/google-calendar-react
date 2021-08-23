@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { date } from "./date-reducer";
-import { eventModal } from "./event-modal-reducer";
+import { date } from "./date";
+import { eventModal } from "./event-modal";
 
 export const rootReducer = combineReducers({
   date,
