@@ -9,7 +9,7 @@ import NavigateBefore from "@material-ui/icons/NavigateBefore";
 import NavigateNext from "@material-ui/icons/NavigateNext";
 
 export const Header = () => {
-  const selectedDay = useSelector((state: State) => state.selectedDay);
+  const selectedDay = useSelector((state: State) => state.date.selectedDay);
   const dispatch = useDispatch();
 
   return (

@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { changeDate } from "../../../actions/date";
 
 export const DayButton = ({ elementDate, displayDate }: DayButtonProps) => {
-  const selectedDay = useSelector((state: State) => state.selectedDay);
+  const selectedDay = useSelector((state: State) => state.date.selectedDay);
   const dispatch = useDispatch();
 
   const classes = classNames(styles.button, {

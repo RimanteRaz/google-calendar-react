@@ -7,7 +7,7 @@ import { EventGrid } from "./event-grid";
 import { HourScale } from "./hour-scale";
 
 export const WeekCalendar = () => {
-  const selectedDay = useSelector((state: State) => state.selectedDay);
+  const selectedDay = useSelector((state: State) => state.date.selectedDay);
 
   const firstDayOfWeek = getStartOfWeek(selectedDay);
   const datesToDisplay = [...Array(DAYS_IN_A_WEEK)];

@@ -10,7 +10,7 @@ import { Weekdays } from "./weekdays";
 const ROWS_IN_CALENDAR = 6;
 
 export const MonthCalendar = () => {
-  const selectedDay = useSelector((state: State) => state.selectedDay);
+  const selectedDay = useSelector((state: State) => state.date.selectedDay);
   const [displayDate, setDisplayDate] = useState(selectedDay);
 
   useEffect(() => {

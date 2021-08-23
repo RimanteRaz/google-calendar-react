@@ -4,7 +4,7 @@ import { DAYS_IN_A_WEEK, getHourKey, getStartOfWeek, HOURS_IN_DAY } from "../../
 import styles from "./EventGrid.module.scss";
 
 export const EventGrid = () => {
-  const selectedDay = useSelector((state: State) => state.selectedDay);
+  const selectedDay = useSelector((state: State) => state.date.selectedDay);
   const firstDayOfWeek = getStartOfWeek(selectedDay);
 
   const daysInAWeek = [...Array(DAYS_IN_A_WEEK)];

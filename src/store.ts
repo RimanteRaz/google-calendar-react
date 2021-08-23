@@ -1,10 +1,15 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { dateReducer } from "./reducers";
+import { rootReducer } from "./reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-export const store = createStore(dateReducer, composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export type State = {
-  selectedDay: Date;
+  date: {
+    selectedDay: Date;
+  };
+  eventModal: {
+    isOpen: boolean;
+  };
 };
