@@ -3,7 +3,7 @@ import { Weekday } from "./weekday";
 import { useSelector } from "react-redux";
 import { DAYS_IN_A_WEEK } from "../../utilities/dates";
 import { EventGrid } from "./event-grid";
-import { HourLabels } from "./hour-scale";
+import { HourLabels } from "./hour-labels";
 import { getStartOfSelectedWeek } from "../../selectors";
 
 export const WeekCalendar = () => {
