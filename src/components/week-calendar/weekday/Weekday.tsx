@@ -2,11 +2,11 @@ import classNames from "classnames";
 import { getWeekdayLabel, isToday } from "../../../utilities/dates";
 import styles from "./Weekday.module.scss";
 
-export const Weekday = ({ elementDate }: WeekdayProps) => {
-  const weekdayLabel = getWeekdayLabel(elementDate);
-  const dayNumber = elementDate.getDate();
+export const Weekday = ({ date }: WeekdayProps) => {
+  const weekdayLabel = getWeekdayLabel(date);
+  const dayNumber = date.getDate();
   const dayClass = classNames(styles.weekday, {
-    [styles.currentDay]: isToday(elementDate),
+    [styles.currentDay]: isToday(date),
   });
 
   return (
@@ -17,4 +17,4 @@ export const Weekday = ({ elementDate }: WeekdayProps) => {
   );
 };
 
-type WeekdayProps = { elementDate: Date };
+type WeekdayProps = { date: Date };

@@ -11,9 +11,9 @@ export const WeekCalendar = () => {
   const datesToDisplay = [...Array(DAYS_IN_A_WEEK)];
 
   const weekdays = datesToDisplay.map((_, index) => {
-    const elementDate = new Date(firstDayOfWeek);
-    elementDate.setDate(elementDate.getDate() + index);
-    return <Weekday key={elementDate.getTime()} elementDate={elementDate} />;
+    const date = new Date(firstDayOfWeek);
+    date.setDate(date.getDate() + index);
+    return <Weekday key={date.getTime()} date={date} />;
   });
 
   return (
