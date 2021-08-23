@@ -1,15 +1,13 @@
 import styles from "./WeekCalendar.module.scss";
 import { Weekday } from "./weekday";
 import { useSelector } from "react-redux";
-import { State } from "../../store";
-import { DAYS_IN_A_WEEK, getStartOfWeek } from "../../utilities/dates";
+import { DAYS_IN_A_WEEK } from "../../utilities/dates";
 import { EventGrid } from "./event-grid";
 import { HourLabels } from "./hour-scale";
+import { getStartOfSelectedWeek } from "../../selectors";
 
 export const WeekCalendar = () => {
-  const selectedDay = useSelector((state: State) => state.date.selectedDay);
-
-  const firstDayOfWeek = getStartOfWeek(selectedDay);
+  const firstDayOfWeek = useSelector(getStartOfSelectedWeek);
   const datesToDisplay = [...Array(DAYS_IN_A_WEEK)];
 
   const weekdays = datesToDisplay.map((_, index) => {

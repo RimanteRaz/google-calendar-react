@@ -4,10 +4,10 @@ import { EventCreationModal } from "./event-creation-modal";
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
 import { WeekCalendar } from "./week-calendar";
-import type { State } from "../store";
+import { checkIfEventModalOpen } from "../selectors";
 
 function App() {
-  const isEventModalOpen = useSelector((state: State) => state.eventModal.isOpen);
+  const isEventModalOpen = useSelector(checkIfEventModalOpen);
 
   return (
     <div className={styles.app}>

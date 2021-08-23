@@ -1,16 +1,16 @@
 import styles from "./MonthCalendar.module.scss";
 import { useSelector } from "react-redux";
-import { State } from "../../store";
 import { DAYS_IN_A_WEEK } from "../../utilities/dates";
 import { DayButton } from "./day-button";
 import { Header } from "./header";
 import { useState, useEffect } from "react";
 import { Weekdays } from "./weekdays";
+import { getSelectedDay } from "../../selectors";
 
 const ROWS_IN_CALENDAR = 6;
 
 export const MonthCalendar = () => {
-  const selectedDay = useSelector((state: State) => state.date.selectedDay);
+  const selectedDay = useSelector(getSelectedDay);
   const [displayDate, setDisplayDate] = useState(selectedDay);
 
   useEffect(() => {

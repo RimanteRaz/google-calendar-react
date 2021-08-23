@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux";
-import { State } from "../../../store";
-import { DAYS_IN_A_WEEK, getHourKey, getStartOfWeek, HOURS_IN_DAY } from "../../../utilities/dates";
+import { getStartOfSelectedWeek } from "../../../selectors";
+import { DAYS_IN_A_WEEK, getHourKey, HOURS_IN_DAY } from "../../../utilities/dates";
 import styles from "./EventGrid.module.scss";
 
 export const EventGrid = () => {
-  const selectedDay = useSelector((state: State) => state.date.selectedDay);
-  const firstDayOfWeek = getStartOfWeek(selectedDay);
+  const firstDayOfWeek = useSelector(getStartOfSelectedWeek);
 
   const daysInAWeek = [...Array(DAYS_IN_A_WEEK)];
   const hoursInDay = [...Array(HOURS_IN_DAY)];
