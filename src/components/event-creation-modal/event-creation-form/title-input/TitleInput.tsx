@@ -7,7 +7,6 @@ export const TitleInput = () => {
         className={styles.eventTitleInput}
         type="text"
         name="title"
-        id="title"
         required
         placeholder="Add title"
       />

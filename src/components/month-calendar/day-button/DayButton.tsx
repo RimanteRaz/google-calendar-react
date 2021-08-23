@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../../store";
 import { isToday, isSameDay } from "../../../utilities/dates";
 import classNames from "classnames";
-import { changeDate } from "../../../actions/date";
+import { changeDate } from "../../../actions";
 
 export const DayButton = ({ elementDate, displayDate }: DayButtonProps) => {
   const selectedDay = useSelector((state: State) => state.date.selectedDay);

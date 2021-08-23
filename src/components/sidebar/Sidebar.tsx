@@ -3,7 +3,7 @@ import { Button } from "../button";
 import AddIcon from "@material-ui/icons/Add";
 import { MonthCalendar } from "../month-calendar";
 import { useDispatch } from "react-redux";
-import { openEventModal } from "../../actions/event-modal";
+import { openEventModal } from "../../actions";
 
 export const Sidebar = () => {
   const dispatch = useDispatch();

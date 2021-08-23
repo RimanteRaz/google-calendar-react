@@ -1,1 +1,1 @@
-export { HourScale } from "./HourScale";
+export { HourLabels } from "./HourLabels";

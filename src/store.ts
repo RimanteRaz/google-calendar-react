@@ -5,11 +5,4 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
-export type State = {
-  date: {
-    selectedDay: Date;
-  };
-  eventModal: {
-    isOpen: boolean;
-  };
-};
+export type State = ReturnType<typeof store.getState>;

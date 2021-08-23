@@ -3,7 +3,7 @@ import { Close } from "@material-ui/icons";
 import styles from "./EventCreationModal.module.scss";
 import { EventCreationForm } from "./event-creation-form";
 import { useDispatch } from "react-redux";
-import { closeEventModal } from "../../actions/event-modal";
+import { closeEventModal } from "../../actions";
 import { MouseEvent, useRef } from "react";
 
 export const EventCreationModal = () => {

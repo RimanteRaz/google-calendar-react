@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { State } from "../../store";
 import { DAYS_IN_A_WEEK, getStartOfWeek } from "../../utilities/dates";
 import { EventGrid } from "./event-grid";
-import { HourScale } from "./hour-scale";
+import { HourLabels } from "./hour-scale";
 
 export const WeekCalendar = () => {
   const selectedDay = useSelector((state: State) => state.date.selectedDay);
@@ -25,7 +25,7 @@ export const WeekCalendar = () => {
         {weekdays}
       </div>
       <div className={styles.main}>
-        <HourScale />
+        <HourLabels />
         <EventGrid />
       </div>
     </div>
