@@ -1,20 +1,21 @@
 import styles from "./WeekCalendar.module.scss";
 import { Weekday } from "./weekday";
 import { useSelector } from "react-redux";
-import { DAYS_IN_A_WEEK } from "../../utilities/dates";
 import { EventGrid } from "./event-grid";
 import { HourLabels } from "./hour-labels";
 import { getStartOfSelectedWeek } from "../../selectors";
+import { mapDaysInWeek } from "../../utilities/map";
 
 export const WeekCalendar = () => {
   const firstDayOfWeek = useSelector(getStartOfSelectedWeek);
-  const datesToDisplay = [...Array(DAYS_IN_A_WEEK)];
 
-  const weekdays = datesToDisplay.map((_, index) => {
-    const date = new Date(firstDayOfWeek);
-    date.setDate(date.getDate() + index);
+  const generateWeekdays = (startDate: Date, weekIndex: number) => {
+    const date = new Date(startDate);
+    date.setDate(date.getDate() + weekIndex);
     return <Weekday key={date.getTime()} date={date} />;
-  });
+  };
+
+  const weekdays = mapDaysInWeek(generateWeekdays, firstDayOfWeek);
 
   return (
     <div className={styles.calendar}>

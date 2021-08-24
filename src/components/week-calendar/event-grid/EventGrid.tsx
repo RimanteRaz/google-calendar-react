@@ -1,28 +1,24 @@
 import { useSelector } from "react-redux";
 import { getStartOfSelectedWeek } from "../../../selectors";
-import { DAYS_IN_A_WEEK, getHourKey, HOURS_IN_DAY } from "../../../utilities/dates";
+import { getHourKey } from "../../../utilities/dates";
+import { mapDaysInWeek, mapHours } from "../../../utilities/map";
 import styles from "./EventGrid.module.scss";
 
 export const EventGrid = () => {
   const firstDayOfWeek = useSelector(getStartOfSelectedWeek);
 
-  const daysInAWeek = [...Array(DAYS_IN_A_WEEK)];
-  const hoursInDay = [...Array(HOURS_IN_DAY)];
+  const generateEventGridCol = (columnDate: Date, hourIndex: number) => {
+    const key = getHourKey(columnDate, hourIndex);
+    return <div key={key} className={styles.timeSlot}></div>;
+  };
 
-  return (
-    <div className={styles.eventGrid}>
-      {daysInAWeek.map((_, index) => {
-        const columnDate = new Date(firstDayOfWeek);
-        columnDate.setDate(columnDate.getDate() + index);
+  const generateEventGrid = (startDate: Date, weekIndex: number) => {
+    const columnDate = new Date(startDate);
+    columnDate.setDate(columnDate.getDate() + weekIndex);
+    return mapHours(generateEventGridCol, columnDate);
+  };
 
-        const eventGridCol = hoursInDay.map((_, index) => {
-          const hour = index + 1;
-          const key = getHourKey(columnDate, hour);
-          return <div key={key} className={styles.timeSlot}></div>;
-        });
+  const eventGrid = mapDaysInWeek(generateEventGrid, firstDayOfWeek);
 
-        return eventGridCol;
-      })}
-    </div>
-  );
+  return <div className={styles.eventGrid}>{eventGrid}</div>;
 };
