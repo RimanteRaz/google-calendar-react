@@ -7,13 +7,13 @@ import styles from "./EventGrid.module.scss";
 export const EventGrid = () => {
   const firstDayOfWeek = useSelector(getStartOfSelectedWeek);
 
-  const generateEventGrid = (_: undefined, weekIndex: number) => {
+  const generateEventGrid = (weekIndex: number) => {
     const columnDate = new Date(firstDayOfWeek);
     columnDate.setDate(columnDate.getDate() + weekIndex);
 
-    const generateEventGridCol = (_: undefined, hourIndex: number) => {
+    const generateEventGridCol = (hourIndex: number) => {
       const key = getHourKey(columnDate, hourIndex);
-      return <div key={key} className={styles.timeSlot} onClick={() => console.log(key)}></div>;
+      return <div key={key} className={styles.timeSlot}></div>;
     };
 
     return mapHours(generateEventGridCol);

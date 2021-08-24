@@ -3,7 +3,7 @@ import { mapHours } from "../../../utilities/map";
 import styles from "./HourLabels.module.scss";
 
 export const HourLabels = () => {
-  const generateHourLabels = (_: undefined, hourIndex: number) => {
+  const generateHourLabels = (hourIndex: number) => {
     const hour = hourIndex + 1;
     const hourLabel = getHourLabel(hour);
     return (

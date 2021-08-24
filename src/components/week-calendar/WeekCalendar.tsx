@@ -9,7 +9,7 @@ import { mapDaysInWeek } from "../../utilities/map";
 export const WeekCalendar = () => {
   const firstDayOfWeek = useSelector(getStartOfSelectedWeek);
 
-  const generateWeekdays = (_: undefined, weekIndex: number) => {
+  const generateWeekdays = (weekIndex: number) => {
     const date = new Date(firstDayOfWeek);
     date.setDate(date.getDate() + weekIndex);
     return <Weekday key={date.getTime()} date={date} />;
