@@ -1,6 +1,7 @@
 export const DAYS_IN_A_WEEK = 7;
+export const HOURS_IN_DAY = 24;
 
-const getStartOfWeek = (today: Date) => {
+export const getStartOfWeek = (today: Date) => {
   const date = new Date(today.toString());
   const pastSunday = date.setDate(date.getDate() - date.getDay());
   return new Date(pastSunday);
@@ -78,4 +79,29 @@ export const decrementMonth = (date: Date) => {
   const newDate = new Date(date.toString());
   newDate.setMonth(date.getMonth() - 1);
   return newDate;
+};
+
+export const getWeekdayLabel = (date: Date) => {
+  const dateFormatOptions: Intl.DateTimeFormatOptions = {
+    weekday: "short",
+  };
+  const dateText = new Intl.DateTimeFormat("en-GB", dateFormatOptions).format(date);
+  return dateText.toUpperCase();
+};
+
+export const getHourLabel = (hours: number) => {
+  if (hours === 24) {
+    return "";
+  }
+  const date = new Date();
+  date.setHours(hours);
+  const timeFormatOptions: Intl.DateTimeFormatOptions = {
+    hour12: true,
+    hour: "numeric",
+  };
+  return new Intl.DateTimeFormat("en-GB", timeFormatOptions).format(date).toUpperCase();
+};
+
+export const getHourKey = (date: Date, hour: number) => {
+  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${hour}`;
 };

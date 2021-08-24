@@ -1,0 +1,39 @@
+@import "../../utilities/colours";
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 55px repeat(7, minmax(100px, 1fr));
+  height: 80px;
+}
+
+.timezone {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  font-size: 65%;
+  color: $light-text-color;
+  padding-bottom: 5px;
+}
+
+.timezone::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  width: 10px;
+  background-color: $border-color;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  overflow-x: scroll;
+  position: relative;
+}

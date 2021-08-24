@@ -1,0 +1,46 @@
+@import "../../../utilities/colours";
+
+.createEventForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputsAndDecoration {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.eventDateSelect.error #event-date,
+.startDateSelect.error #start-date,
+.endDateSelect.error #end-date {
+  background-color: rgba(197, 17, 50, 0.15);
+}
+
+.eventDateSelect.error #event-date:hover,
+.startTimeSelect.error #start-time:hover,
+.endTimeSelect.error #end-time:hover {
+  background-color: rgba(197, 17, 50, 0.2);
+}
+
+.eventTitle.error::after,
+.eventDateSelect.error::after,
+.endTimeSelect.error::after,
+.startTimeSelect.error::after {
+  content: attr(data-error);
+  padding-top: 5px;
+  font-size: 12px;
+  display: block;
+  color: darkred;
+}
+
+.endTimeSelect.error::after,
+.startTimeSelect.error::after {
+  width: 15ch;
+  word-wrap: break-word;
+}

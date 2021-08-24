@@ -10,5 +10,5 @@ export const Button: React.FC<ButtonProps> = ({ onClick, styleName, children }) 
 
 type ButtonProps = {
   onClick: () => void;
-  styleName: "round" | "squareOutline" | "big";
+  styleName: "round" | "squareOutline" | "squareFill" | "big";
 };

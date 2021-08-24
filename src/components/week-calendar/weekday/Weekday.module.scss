@@ -1,0 +1,53 @@
+@import "../../../utilities/colours";
+
+.weekday {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid $border-color;
+}
+
+.weekday::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 20px;
+  background-color: $border-color;
+}
+
+.weekday span {
+  width: 100%;
+  text-align: center;
+  color: $light-text-color;
+  font-size: 75%;
+  margin-top: 15px;
+}
+
+.weekday div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: $medium-text-color;
+  font-size: 26px;
+  font-weight: 300;
+  margin: 2px auto 5px auto;
+  height: 45px;
+  width: 45px;
+  border-radius: 25px;
+}
+
+.currentDay {
+  span {
+    color: $blue;
+  }
+  div {
+    background-color: $blue;
+    color: white;
+  }
+}

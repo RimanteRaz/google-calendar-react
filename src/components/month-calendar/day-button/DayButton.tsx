@@ -1,12 +1,12 @@
 import styles from "./DayButton.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { State } from "../../../store";
 import { isToday, isSameDay } from "../../../utilities/dates";
 import classNames from "classnames";
-import { changeDate } from "../../../actions/date";
+import { changeDate } from "../../../actions";
+import { getSelectedDay } from "../../../selectors";
 
 export const DayButton = ({ elementDate, displayDate }: DayButtonProps) => {
-  const selectedDay = useSelector((state: State) => state.selectedDay);
+  const selectedDay = useSelector(getSelectedDay);
   const dispatch = useDispatch();
 
   const classes = classNames(styles.button, {

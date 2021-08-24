@@ -11,13 +11,13 @@ type DateThunkAction = ThunkAction<void, State, null, PayloadAction<Date>>;
 
 export const nextWeek = (): DateThunkAction => (dispatch, getState) => {
   const state = getState();
-  const newDate = getDayAWeekLater(state.selectedDay);
+  const newDate = getDayAWeekLater(state.date.selectedDay);
   dispatch(changeDate(newDate));
 };
 
 export const previousWeek = (): DateThunkAction => (dispatch, getState) => {
   const state = getState();
-  const newDate = getDayAWeekAgo(state.selectedDay);
+  const newDate = getDayAWeekAgo(state.date.selectedDay);
   dispatch(changeDate(newDate));
 };
 

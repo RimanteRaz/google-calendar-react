@@ -1,15 +1,15 @@
 import styles from "./Header.module.scss";
 import Menu from "@material-ui/icons/Menu";
 import { useDispatch, useSelector } from "react-redux";
-import type { State } from "../../store";
 import { getMonthAndYear } from "../../utilities/dates";
 import { nextWeek, previousWeek, today } from "../../actions";
 import { Button } from "../button";
 import NavigateBefore from "@material-ui/icons/NavigateBefore";
 import NavigateNext from "@material-ui/icons/NavigateNext";
+import { getSelectedDay } from "../../selectors";
 
 export const Header = () => {
-  const selectedDay = useSelector((state: State) => state.selectedDay);
+  const selectedDay = useSelector(getSelectedDay);
   const dispatch = useDispatch();
 
   return (

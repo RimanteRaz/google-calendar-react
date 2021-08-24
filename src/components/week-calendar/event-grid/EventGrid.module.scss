@@ -1,0 +1,16 @@
+@import "../../../utilities/colours";
+
+.eventGrid {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(100px, 1fr));
+  grid-template-rows: repeat(24, 40px);
+  grid-auto-flow: column;
+  position: relative;
+}
+
+.timeSlot {
+  position: relative;
+  border-left: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+}
