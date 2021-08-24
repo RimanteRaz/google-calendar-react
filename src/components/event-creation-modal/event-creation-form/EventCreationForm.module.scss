@@ -44,3 +44,83 @@
   width: 15ch;
   word-wrap: break-word;
 }
+
+.eventTitle {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  margin-bottom: 20px;
+  margin-left: 10%;
+}
+
+.eventTitleInput {
+  border: none;
+  border-bottom: 1px solid $border-color;
+  font-size: 140%;
+  font-family: "Roboto", sans-serif;
+  transition: border 150ms ease-out;
+  padding: 5px 5px 0 5px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    border-bottom: 2px solid $blue;
+    transition: border 150ms ease-out;
+  }
+}
+
+.error #title {
+  background-color: rgba(197, 17, 50, 0.15);
+  border-bottom: 2px solid darkred !important;
+}
+
+.clockIcon {
+  display: flex;
+  align-items: center;
+  width: 8%;
+  color: $light-text-color;
+}
+
+.dateTimeSelect {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.eventDateSelect,
+.startTimeSelect,
+.endTimeSelect {
+  padding: 6px 6px 3px 6px;
+  border-radius: 4px;
+  &:hover {
+    background-color: $hover-bg;
+  }
+}
+
+.dateTimeSelect input {
+  border: none;
+  outline: none;
+  padding: 2px;
+  background-color: transparent;
+  font-family: "Roboto", sans-serif;
+  color: $medium-text-color;
+  font-size: 14px;
+}
+
+.dateTimeSelect input:hover {
+  cursor: text;
+}
+
+.dateTimeSelect input:focus {
+  border-bottom: 2px solid $blue;
+  background-color: $hover-bg;
+}
+
+.dateTimeSelect label {
+  display: block;
+  padding-left: 2px;
+  font-size: 12px;
+  color: $light-text-color;
+}

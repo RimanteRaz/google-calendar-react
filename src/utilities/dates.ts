@@ -105,3 +105,12 @@ export const getHourLabel = (hours: number) => {
 export const getHourKey = (date: Date, hour: number) => {
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${hour}`;
 };
+
+export const isEndGreaterThanStart = (startTime: string, endTime: string) => {
+  const [startHours, startMinutes] = startTime.split(":");
+  const [endHours, endMinutes] = endTime.split(":");
+  if (startHours > endHours || (startHours === endHours && startMinutes >= endMinutes)) {
+    return false;
+  }
+  return true;
+};

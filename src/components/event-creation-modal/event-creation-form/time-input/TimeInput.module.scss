@@ -1,0 +1,24 @@
+@import "../../../../utilities/colours";
+
+.timeSelect {
+  padding: 6px 6px 3px 6px;
+  border-radius: 4px;
+  &:hover {
+    background-color: $hover-bg;
+  }
+}
+
+.error {
+  background-color: rgba(197, 17, 50, 0.15);
+  &:hover {
+    background-color: rgba(197, 17, 50, 0.2);
+  }
+}
+
+.errorMessage {
+  padding-top: 5px;
+  font-size: 12px;
+  color: darkred;
+  width: 15ch;
+  word-wrap: break-word;
+}

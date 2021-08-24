@@ -1,18 +1,17 @@
 import classNames from "classnames";
-import styles from "./TitleInput.module.scss";
+import styles from "./DateInput.module.scss";
 
-export const TitleInput = ({ value, setValue, errorMessage, validateInput }: TitleInputProps) => {
-  const inputClasses = classNames(styles.eventTitleInput, {
+export const DateInput = ({ value, setValue, errorMessage, validateInput }: DateInputProps) => {
+  const classes = classNames(styles.eventDateSelect, {
     [styles.error]: errorMessage.length > 0,
   });
 
   return (
-    <div className={styles.eventTitle}>
+    <div className={classes}>
+      <label htmlFor="event-date">Day:</label>
       <input
-        className={inputClasses}
-        type="text"
-        name="title"
-        placeholder="Add title"
+        type="date"
+        name="event-date"
         value={value}
         onChange={e => setValue(e.target.value)}
         onBlur={e => validateInput(e.target.value)}
@@ -22,7 +21,7 @@ export const TitleInput = ({ value, setValue, errorMessage, validateInput }: Tit
   );
 };
 
-type TitleInputProps = {
+type DateInputProps = {
   value: string;
   setValue: (value: string) => void;
   errorMessage: string;
