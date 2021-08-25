@@ -1,13 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./App.module.scss";
 import { EventCreationModal } from "./event-creation-modal";
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
 import { WeekCalendar } from "./week-calendar";
 import { checkIfEventModalOpen } from "../selectors";
+import { fetchEvents } from "../actions";
 
 function App() {
   const isEventModalOpen = useSelector(checkIfEventModalOpen);
+
+  const dispatch = useDispatch();
+  dispatch(fetchEvents());
 
   return (
     <div className={styles.app}>

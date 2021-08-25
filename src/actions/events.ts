@@ -2,18 +2,23 @@ import { ThunkAction } from "redux-thunk";
 import { State } from "../store";
 import { PayloadAction } from "../types";
 import { api } from "../utilities/api";
-import { Event } from "../utilities/events";
+import { convertSerializedEvents, Event } from "../utilities/events";
 
-export const SAVE_EVENT = "SAVE_EVENT";
+export const SAVE_EVENTS = "SAVE_EVENTS";
 
-export const saveEventToState = (event: Event) => ({ type: SAVE_EVENT, payload: event });
+export const saveEventsToState = (events: Event[]) => ({ type: SAVE_EVENTS, payload: events });
 
-type EventThunkAction = ThunkAction<void, State, null, PayloadAction<Event>>;
+type EventThunkAction = ThunkAction<void, State, null, PayloadAction<Event[]>>;
 
 export const saveEvent =
   (event: Event): EventThunkAction =>
   dispatch => {
     api.saveEvent(event);
-
-    dispatch(saveEventToState(event));
+    dispatch(saveEventsToState([event]));
   };
+
+export const fetchEvents = (): EventThunkAction => async (dispatch, getState) => {
+  const serializedEvents = await api.getEvents();
+  const events = convertSerializedEvents(serializedEvents);
+  dispatch(saveEventsToState(events));
+};

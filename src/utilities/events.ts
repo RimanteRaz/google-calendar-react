@@ -14,9 +14,27 @@ export const generateEvent = (title: string, date: string, startTime: string, en
   return newEvent;
 };
 
+export const convertSerializedEvents = (serializedEvents: SerializedEvent[]) => {
+  return serializedEvents.map(event => {
+    return {
+      id: event.id,
+      title: event.title,
+      startDate: new Date(event.startDate),
+      endDate: new Date(event.endDate),
+    };
+  });
+};
+
 export interface Event {
   id: string;
   title: string;
   startDate: Date;
   endDate: Date;
+}
+
+export interface SerializedEvent {
+  id: string;
+  title: string;
+  startDate: string;
+  endDate: string;
 }
