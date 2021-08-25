@@ -6,12 +6,15 @@ import { Sidebar } from "./sidebar";
 import { WeekCalendar } from "./week-calendar";
 import { checkIfEventModalOpen } from "../selectors";
 import { fetchEvents } from "../actions";
+import { useEffect } from "react";
 
 function App() {
   const isEventModalOpen = useSelector(checkIfEventModalOpen);
-
   const dispatch = useDispatch();
-  dispatch(fetchEvents());
+
+  useEffect(() => {
+    dispatch(fetchEvents());
+  }, []);
 
   return (
     <div className={styles.app}>

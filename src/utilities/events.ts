@@ -1,5 +1,7 @@
 import { uuid } from "./uuid";
 
+export const TIME_SLOT_HEIGHT = 40;
+
 export const generateEvent = (title: string, date: string, startTime: string, endTime: string) => {
   const startDate = new Date(date + " " + startTime);
   const endDate = new Date(date + " " + endTime);
@@ -14,7 +16,7 @@ export const generateEvent = (title: string, date: string, startTime: string, en
   return newEvent;
 };
 
-export const convertSerializedEvents = (serializedEvents: SerializedEvent[]) => {
+export const deserializeEvents = (serializedEvents: SerializedEvent[]) => {
   return serializedEvents.map(event => {
     return {
       id: event.id,
@@ -23,6 +25,30 @@ export const convertSerializedEvents = (serializedEvents: SerializedEvent[]) => 
       endDate: new Date(event.endDate),
     };
   });
+};
+
+export const isEventInTimeRange = (event: Event, refStartDate: Date, refEndDate: Date) => {
+  const eventStartTime = event.startDate.getTime();
+  const eventEndTime = event.endDate.getTime();
+
+  const refStartTime = refStartDate.getTime();
+  const refEndTime = refEndDate.getTime();
+
+  const isOutOfRange = eventStartTime > refEndTime || eventEndTime < refStartTime;
+
+  return !isOutOfRange;
+};
+
+export const sortEvents = (previous: Event, current: Event) => {
+  const prevEventStartTime = previous.startDate.getTime();
+  const curEventStartTime = current.startDate.getTime();
+  if (prevEventStartTime < curEventStartTime) {
+    return -1;
+  }
+  if (prevEventStartTime === curEventStartTime) {
+    return 0;
+  }
+  return 1;
 };
 
 export interface Event {

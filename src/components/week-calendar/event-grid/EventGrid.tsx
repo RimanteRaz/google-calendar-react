@@ -3,6 +3,7 @@ import { getStartOfSelectedWeek } from "../../../selectors";
 import { getHourKey } from "../../../utilities/dates";
 import { mapDaysInWeek, mapHours } from "../../../utilities/map";
 import styles from "./EventGrid.module.scss";
+import { TimeSlot } from "./time-slot";
 
 export const EventGrid = () => {
   const firstDayOfWeek = useSelector(getStartOfSelectedWeek);
@@ -13,7 +14,8 @@ export const EventGrid = () => {
 
     const generateEventGridCol = (hourIndex: number) => {
       const key = getHourKey(columnDate, hourIndex);
-      return <div key={key} className={styles.timeSlot}></div>;
+      // return <div key={key} className={styles.timeSlot}></div>;
+      return <TimeSlot key={key} date={columnDate} hour={hourIndex} />;
     };
 
     return mapHours(generateEventGridCol);
