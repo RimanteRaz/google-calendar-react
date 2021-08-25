@@ -6,8 +6,14 @@ import { TitleInput } from "./title-input";
 import { DateInput } from "./date-input";
 import { TimeInput } from "./time-input";
 import { isEndGreaterThanStart } from "../../../utilities/dates";
+import { generateEvent } from "../../../utilities/events";
+import { useDispatch } from "react-redux";
+import { saveEvent } from "../../../actions/events";
+import { closeEventModal } from "../../../actions";
 
 export const EventCreationForm = () => {
+  const dispatch = useDispatch();
+
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
@@ -21,7 +27,9 @@ export const EventCreationForm = () => {
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (isFormValid()) {
-      console.log("Form is valid");
+      const event = generateEvent(title, date, startTime, endTime);
+      dispatch(saveEvent(event));
+      cleanAndCloseModal();
     }
   };
 
@@ -78,6 +86,14 @@ export const EventCreationForm = () => {
       return true;
     }
     return false;
+  };
+
+  const cleanAndCloseModal = () => {
+    setTitle("");
+    setDate("");
+    setStartTime("");
+    setEndTime("");
+    dispatch(closeEventModal());
   };
 
   return (
