@@ -16,66 +16,6 @@
   justify-content: flex-end;
 }
 
-.eventDateSelect.error #event-date,
-.startDateSelect.error #start-date,
-.endDateSelect.error #end-date {
-  background-color: rgba(197, 17, 50, 0.15);
-}
-
-.eventDateSelect.error #event-date:hover,
-.startTimeSelect.error #start-time:hover,
-.endTimeSelect.error #end-time:hover {
-  background-color: rgba(197, 17, 50, 0.2);
-}
-
-.eventTitle.error::after,
-.eventDateSelect.error::after,
-.endTimeSelect.error::after,
-.startTimeSelect.error::after {
-  content: attr(data-error);
-  padding-top: 5px;
-  font-size: 12px;
-  display: block;
-  color: darkred;
-}
-
-.endTimeSelect.error::after,
-.startTimeSelect.error::after {
-  width: 15ch;
-  word-wrap: break-word;
-}
-
-.eventTitle {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  position: relative;
-  margin-bottom: 20px;
-  margin-left: 10%;
-}
-
-.eventTitleInput {
-  border: none;
-  border-bottom: 1px solid $border-color;
-  font-size: 140%;
-  font-family: "Roboto", sans-serif;
-  transition: border 150ms ease-out;
-  padding: 5px 5px 0 5px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  &:focus,
-  &:focus-visible {
-    outline: none;
-    border-bottom: 2px solid $blue;
-    transition: border 150ms ease-out;
-  }
-}
-
-.error #title {
-  background-color: rgba(197, 17, 50, 0.15);
-  border-bottom: 2px solid darkred !important;
-}
-
 .clockIcon {
   display: flex;
   align-items: center;
@@ -87,16 +27,6 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 20px;
-}
-
-.eventDateSelect,
-.startTimeSelect,
-.endTimeSelect {
-  padding: 6px 6px 3px 6px;
-  border-radius: 4px;
-  &:hover {
-    background-color: $hover-bg;
-  }
 }
 
 .dateTimeSelect input {

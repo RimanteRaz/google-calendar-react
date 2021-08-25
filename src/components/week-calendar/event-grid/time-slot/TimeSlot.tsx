@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import { getEventsOfThisHour } from "../../../../selectors";
+import { getDateWithDiffHour } from "../../../../utilities/dates";
 import { EventBox } from "../event-box";
 import styles from "./TimeSlot.module.scss";
 
 export const TimeSlot = ({ date, hour }: TimeSlotProps) => {
-  const timeSlotDate = new Date(date);
-  timeSlotDate.setHours(hour, 0, 0);
+  const timeSlotDate = getDateWithDiffHour(date, hour);
 
   const events = useSelector(getEventsOfThisHour(timeSlotDate));
 

@@ -1,4 +1,4 @@
-import { SAVE_EVENTS } from "../actions/events";
+import { SAVE_EVENTS } from "../actions";
 import { PayloadAction } from "../types";
 import { Event } from "../utilities/events";
 

@@ -14,7 +14,6 @@ export const EventGrid = () => {
 
     const generateEventGridCol = (hourIndex: number) => {
       const key = getHourKey(columnDate, hourIndex);
-      // return <div key={key} className={styles.timeSlot}></div>;
       return <TimeSlot key={key} date={columnDate} hour={hourIndex} />;
     };
 

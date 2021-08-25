@@ -1,5 +1,5 @@
 import { State } from "../store";
-import { isSameHour } from "../utilities/dates";
+import { getDateWithDiffHour, isSameHour } from "../utilities/dates";
 import { Event, isEventInTimeRange } from "../utilities/events";
 
 export const getEvents = (state: State) => state.events;
@@ -15,8 +15,7 @@ export const getOverlapingEvents = (startDate: Date, endDate: Date) => (state: S
   const overlapingEvents = [];
 
   for (let hour = startHour - 1; hour <= startHour + 2 && hour <= endHour; ++hour) {
-    const date = new Date(startDate);
-    date.setHours(hour, 0, 0);
+    const date = getDateWithDiffHour(startDate, hour);
 
     const currentHourEvents = state.events.filter((event: Event) =>
       isSameHour(event.startDate, date)

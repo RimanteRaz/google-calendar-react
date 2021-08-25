@@ -131,3 +131,9 @@ export const get12HourTime = (date: Date) => {
   const timeLabel = new Intl.DateTimeFormat("en-GB", dateFormatOptions).format(date);
   return timeLabel.replace(" ", "");
 };
+
+export const getDateWithDiffHour = (date: Date, hour: number) => {
+  const newDate = new Date(date);
+  newDate.setHours(hour, 0, 0);
+  return newDate;
+};

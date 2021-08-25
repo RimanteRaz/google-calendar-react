@@ -2,6 +2,20 @@ import { uuid } from "./uuid";
 
 export const TIME_SLOT_HEIGHT = 40;
 
+export interface Event {
+  id: string;
+  title: string;
+  startDate: Date;
+  endDate: Date;
+}
+
+export interface SerializedEvent {
+  id: string;
+  title: string;
+  startDate: string;
+  endDate: string;
+}
+
 export const generateEvent = (title: string, date: string, startTime: string, endTime: string) => {
   const startDate = new Date(date + " " + startTime);
   const endDate = new Date(date + " " + endTime);
@@ -50,17 +64,3 @@ export const sortEvents = (previous: Event, current: Event) => {
   }
   return 1;
 };
-
-export interface Event {
-  id: string;
-  title: string;
-  startDate: Date;
-  endDate: Date;
-}
-
-export interface SerializedEvent {
-  id: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-}

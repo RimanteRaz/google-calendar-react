@@ -53,19 +53,6 @@ export const EventCreationForm = () => {
     return false;
   };
 
-  const isRequiredFieldEntered = (
-    value: string,
-    errorSetter: React.Dispatch<React.SetStateAction<string>>
-  ) => {
-    if (value.length < 1) {
-      errorSetter("This field is required");
-      return false;
-    } else {
-      errorSetter("");
-      return true;
-    }
-  };
-
   const isTimeValid = () => {
     if (isEndGreaterThanStart(startTime, endTime)) {
       setEndTimeError("");
@@ -140,4 +127,17 @@ export const EventCreationForm = () => {
       </div>
     </form>
   );
+};
+
+const isRequiredFieldEntered = (
+  value: string,
+  errorSetter: React.Dispatch<React.SetStateAction<string>>
+) => {
+  if (value.length < 1) {
+    errorSetter("This field is required");
+    return false;
+  } else {
+    errorSetter("");
+    return true;
+  }
 };
