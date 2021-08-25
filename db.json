@@ -1,0 +1,34 @@
+{
+  "events": [
+    {
+      "id": "20445687-ad34-488e-a30a-17a92b858e15",
+      "title": "Hello",
+      "startDate": "2021-08-26T10:58:00.000Z",
+      "endDate": "2021-08-26T11:58:00.000Z"
+    },
+    {
+      "id": "f580e1d9-5366-43f9-8e91-03760915dcb1",
+      "title": "Get ready",
+      "startDate": "2021-08-26T08:05:00.000Z",
+      "endDate": "2021-08-26T12:05:00.000Z"
+    },
+    {
+      "id": "be0b4c32-6060-4c3f-bbd4-9288179a762d",
+      "title": "Another one",
+      "startDate": "2021-08-27T13:06:00.000Z",
+      "endDate": "2021-08-27T19:06:00.000Z"
+    },
+    {
+      "id": "5d43f5b0-abcc-4c8e-b79e-ddacfe57f3f8",
+      "title": "Early meeting",
+      "startDate": "2021-08-24T03:06:00.000Z",
+      "endDate": "2021-08-24T06:06:00.000Z"
+    },
+    {
+      "id": "52c0dffd-62e9-4147-90a6-2af339241656",
+      "title": "Wake up",
+      "startDate": "2021-08-23T03:00:00.000Z",
+      "endDate": "2021-08-23T06:00:00.000Z"
+    }
+  ]
+}
