@@ -3,12 +3,14 @@
 .createEventForm {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
 }
 
 .inputsAndDecoration {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 
 .buttons {
@@ -26,7 +28,6 @@
 .dateTimeSelect {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 20px;
 }
 
 .dateTimeSelect input {
