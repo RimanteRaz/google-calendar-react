@@ -1,3 +1,3 @@
 export * from "./date";
-export * from "./event-modal";
+export * from "./event-create";
 export * from "./events";
