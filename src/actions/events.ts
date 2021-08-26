@@ -23,3 +23,15 @@ export const fetchEvents =
     const events = deserializeEvents(serializedEvents);
     dispatch(saveEventsToState(events));
   };
+
+type SaveEvent = {
+  type: typeof SAVE_EVENT;
+  payload: Event;
+};
+
+type SaveEvents = {
+  type: typeof SAVE_EVENTS;
+  payload: Event[];
+};
+
+export type EventsAction = SaveEvent | SaveEvents;

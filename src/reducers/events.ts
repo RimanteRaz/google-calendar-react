@@ -1,9 +1,7 @@
-import { Action } from "redux";
-import { SAVE_EVENT, SAVE_EVENTS } from "../actions";
-import { PayloadAction } from "../types";
+import { EventsAction, SAVE_EVENT, SAVE_EVENTS } from "../actions";
 import { Event } from "../utilities/events";
 
-export const events = (events: Event[] = [], action: PayloadAction<Event[]>) => {
+export const events = (events: Event[] = [], action: EventsAction) => {
   switch (action.type) {
     case SAVE_EVENT:
       return [...events, action.payload];

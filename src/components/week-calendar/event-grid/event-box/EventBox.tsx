@@ -13,13 +13,11 @@ export const EventBox = ({ event }: EventBoxProps) => {
   const overlapingEvents = useSelector(getOverlapingEvents(event.startDate, event.endDate));
 
   const timeLabel = getLabel(event.startDate, event.endDate);
-  const height = calculateEventBoxHeight(event.startDate, event.endDate);
-  const top = calculateEventTop(event.startDate);
-  const width = calculateEventWidth(overlapingEvents);
-  const left = calculateEventLeft(event, overlapingEvents);
+
+  const style = calculatePositionStyles(event, overlapingEvents);
 
   return (
-    <div className={styles.event} style={{ height: height, top: top, width: width, left: left }}>
+    <div className={styles.event} style={style}>
       <div className={styles.title}>{event.title}</div>
       <div className={styles.time}>{timeLabel}</div>
     </div>
@@ -36,29 +34,33 @@ const getLabel = (startDate: Date, endDate: Date) => {
   return `${startTimeLabel} – ${endTimeLabel}`;
 };
 
-const calculateEventBoxHeight = (startDate: Date, endDate: Date) => {
+const calculateHeight = (startDate: Date, endDate: Date) => {
   const diffInMiliSeconds = endDate.getTime() - startDate.getTime();
   const diffInMinutes = diffInMiliSeconds / (MILISECONDS_IN_SECOND * SECONDS_IN_MINUTE);
   let height = Math.floor((TIME_SLOT_HEIGHT * diffInMinutes) / MINUTES_IN_HOUR);
-  height = Math.max(height, 20);
-  return `${height}px`;
+  return Math.max(height, 20);
 };
 
-const calculateEventTop = (startDate: Date) => {
+const calculateTopPosition = (startDate: Date) => {
   const startMinutes = startDate.getMinutes();
-  const top = Math.floor((TIME_SLOT_HEIGHT * startMinutes) / MINUTES_IN_HOUR);
-  return `${top}px`;
+  return Math.floor((TIME_SLOT_HEIGHT * startMinutes) / MINUTES_IN_HOUR);
 };
 
-const calculateEventWidth = (overlapingEvents: Event[]) => {
-  const width = parseInt((100 / overlapingEvents.length).toFixed(2));
-  return `${width}%`;
+const calculateWidth = (overlapingEvents: Event[]) => {
+  return parseInt((100 / overlapingEvents.length).toFixed(2));
 };
 
-const calculateEventLeft = (event: Event, overlapingEvents: Event[]) => {
+const calculateLeftPosition = (event: Event, overlapingEvents: Event[], width: number) => {
   overlapingEvents.sort(sortEvents);
   const position = overlapingEvents.indexOf(event);
-  const width = parseInt((100 / overlapingEvents.length).toFixed(2));
-  const left = position * width;
-  return `${left}%`;
+  return position * width;
+};
+
+const calculatePositionStyles = (event: Event, overlapingEvents: Event[]) => {
+  const height = calculateHeight(event.startDate, event.endDate);
+  const top = calculateTopPosition(event.startDate);
+  const width = calculateWidth(overlapingEvents);
+  const left = calculateLeftPosition(event, overlapingEvents, width);
+
+  return { height: `${height}px`, top: `${top}px`, width: `${width}%`, left: `${left}%` };
 };
