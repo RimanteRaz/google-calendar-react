@@ -28,7 +28,7 @@ export const EventCreationForm = () => {
     if (isFormValid()) {
       const event = generateEvent(title, date, startTime, endTime);
       dispatch(saveEvent(event));
-      cleanAndCloseModal();
+      dispatch(closeEventModal());
     }
   };
 
@@ -68,18 +68,7 @@ export const EventCreationForm = () => {
     const isDateValid = validateDateInput(date);
     const isStartTimeValid = validateStartTimeInput(startTime);
     const isEndTimeValid = validateEndTimeInput(endTime);
-    if (isTitleValid && isDateValid && isStartTimeValid && isEndTimeValid) {
-      return true;
-    }
-    return false;
-  };
-
-  const cleanAndCloseModal = () => {
-    setTitle("");
-    setDate("");
-    setStartTime("");
-    setEndTime("");
-    dispatch(closeEventModal());
+    return isTitleValid && isDateValid && isStartTimeValid && isEndTimeValid;
   };
 
   return (
