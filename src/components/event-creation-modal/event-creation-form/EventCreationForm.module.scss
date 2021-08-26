@@ -3,12 +3,14 @@
 .createEventForm {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
 }
 
 .inputsAndDecoration {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 
 .buttons {
@@ -16,31 +18,40 @@
   justify-content: flex-end;
 }
 
-.eventDateSelect.error #event-date,
-.startDateSelect.error #start-date,
-.endDateSelect.error #end-date {
-  background-color: rgba(197, 17, 50, 0.15);
+.clockIcon {
+  display: flex;
+  align-items: center;
+  width: 8%;
+  color: $light-text-color;
 }
 
-.eventDateSelect.error #event-date:hover,
-.startTimeSelect.error #start-time:hover,
-.endTimeSelect.error #end-time:hover {
-  background-color: rgba(197, 17, 50, 0.2);
+.dateTimeSelect {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.eventTitle.error::after,
-.eventDateSelect.error::after,
-.endTimeSelect.error::after,
-.startTimeSelect.error::after {
-  content: attr(data-error);
-  padding-top: 5px;
-  font-size: 12px;
+.dateTimeSelect input {
+  border: none;
+  outline: none;
+  padding: 2px;
+  background-color: transparent;
+  font-family: "Roboto", sans-serif;
+  color: $medium-text-color;
+  font-size: 14px;
+}
+
+.dateTimeSelect input:hover {
+  cursor: text;
+}
+
+.dateTimeSelect input:focus {
+  border-bottom: 2px solid $blue;
+  background-color: $hover-bg;
+}
+
+.dateTimeSelect label {
   display: block;
-  color: darkred;
-}
-
-.endTimeSelect.error::after,
-.startTimeSelect.error::after {
-  width: 15ch;
-  word-wrap: break-word;
+  padding-left: 2px;
+  font-size: 12px;
+  color: $light-text-color;
 }
