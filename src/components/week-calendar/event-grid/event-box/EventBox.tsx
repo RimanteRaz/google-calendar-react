@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getOverlapingEvents } from "../../../../selectors";
 import {
   get12HourTime,
@@ -10,6 +10,8 @@ import { Event, sortEvents, TIME_SLOT_HEIGHT } from "../../../../utilities/event
 import styles from "./EventBox.module.scss";
 
 export const EventBox = ({ event }: EventBoxProps) => {
+  const dispatch = useDispatch();
+
   const overlapingEvents = useSelector(getOverlapingEvents(event.startDate, event.endDate));
 
   const timeLabel = getLabel(event.startDate, event.endDate);

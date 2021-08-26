@@ -61,3 +61,17 @@
     transition: box-shadow 250ms ease-out, background-color 250ms ease-out;
   }
 }
+
+.danger {
+  margin-top: 15px;
+  background-color: transparent;
+  border: 1px solid darkred;
+  color: darkred;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 20px;
+  &:hover {
+    background-color: rgba(184, 52, 52, 0.15);
+    cursor: pointer;
+  }
+}

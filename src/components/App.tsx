@@ -7,11 +7,14 @@ import { WeekCalendar } from "./week-calendar";
 import { checkIfEventModalOpen } from "../selectors";
 import { fetchEvents } from "../actions";
 import { useEffect } from "react";
+import { checkIfEventPreviewOpen } from "../selectors/event-preview";
+import { EventPreview } from "./event-preview";
 
 function App() {
   const isEventModalOpen = useSelector(checkIfEventModalOpen);
-  const dispatch = useDispatch();
+  const isEventPreviewOpen = useSelector(checkIfEventPreviewOpen);
 
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchEvents());
   }, []);
@@ -24,6 +27,7 @@ function App() {
         <WeekCalendar />
       </div>
       {isEventModalOpen && <EventCreationModal />}
+      {isEventPreviewOpen && <EventPreview />}
     </div>
   );
 }

@@ -6,9 +6,11 @@ import { deserializeEvents, Event } from "../utilities/events";
 
 export const SAVE_EVENT = "SAVE_EVENT";
 export const SAVE_EVENTS = "SAVE_EVENTS";
+export const DELETE_EVENT = "DELETE_EVENT";
 
 export const saveEventToState = (event: Event) => ({ type: SAVE_EVENT, payload: event });
 export const saveEventsToState = (events: Event[]) => ({ type: SAVE_EVENTS, payload: events });
+export const deleteEventFromState = (eventID: string) => ({ type: DELETE_EVENT, payload: eventID });
 
 export const saveEvent =
   (event: Event): ThunkAction<void, State, null, PayloadAction<Event>> =>
@@ -24,14 +26,26 @@ export const fetchEvents =
     dispatch(saveEventsToState(events));
   };
 
-type SaveEvent = {
+export const deleteEvent =
+  (eventID: string): ThunkAction<void, State, null, PayloadAction<string>> =>
+  dispatch => {
+    api.deleteEvent(eventID);
+    dispatch(deleteEventFromState(eventID));
+  };
+
+type SaveEventToState = {
   type: typeof SAVE_EVENT;
   payload: Event;
 };
 
-type SaveEvents = {
+type SaveEventsToState = {
   type: typeof SAVE_EVENTS;
   payload: Event[];
 };
 
-export type EventsAction = SaveEvent | SaveEvents;
+type DeleteEventFromState = {
+  type: typeof DELETE_EVENT;
+  payload: string;
+};
+
+export type EventsAction = SaveEventToState | SaveEventsToState | DeleteEventFromState;
