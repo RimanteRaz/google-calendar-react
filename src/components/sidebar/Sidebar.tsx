@@ -3,14 +3,14 @@ import { Button } from "../button";
 import AddIcon from "@material-ui/icons/Add";
 import { MonthCalendar } from "../month-calendar";
 import { useDispatch } from "react-redux";
-import { openCreateModal } from "../../actions";
+import { openEventCreateModal } from "../../actions";
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
 
   return (
     <aside className={styles.sidebar}>
-      <Button onClick={() => dispatch(openCreateModal())} styleName={"big"}>
+      <Button onClick={() => dispatch(openEventCreateModal())} styleName={"big"}>
         <AddIcon style={{ marginRight: "8px" }} />
         <span>Create</span>
       </Button>

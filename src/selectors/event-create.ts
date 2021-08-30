@@ -1,3 +1,3 @@
 import { State } from "../store";
 
-export const checkIfEventModalOpen = (state: State) => state.eventCreate.isOpen;
+export const checkIfEventModalOpen = (state: State) => state.eventCreateModal.isOpen;

@@ -10,15 +10,15 @@ export const EventPreview = () => {
   const dispatch = useDispatch();
   const event = useSelector(getDisplayedEvent);
 
-  const eventTimeDescription = getTimeDescription(event.startDate, event.endDate);
+  const eventTimeDescription = event ? getTimeDescription(event.startDate, event.endDate) : null;
 
   return (
     <ModalContainer closeModal={closePreviewModal}>
-      <h2 className={styles.title}>{event.title}</h2>
+      <h2 className={styles.title}>{event ? event.title : ""}</h2>
       <p className={styles.time}>{eventTimeDescription}</p>
       <Button
         onClick={() => {
-          dispatch(deleteEvent(event.id));
+          dispatch(deleteEvent(event ? event.id : ""));
           dispatch(closePreviewModal());
         }}
         styleName={"danger"}
