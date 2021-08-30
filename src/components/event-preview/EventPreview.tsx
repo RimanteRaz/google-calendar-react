@@ -7,18 +7,20 @@ import { ModalContainer } from "../modal-container";
 import styles from "./EventPreview.module.scss";
 
 export const EventPreview = () => {
-  const dispatch = useDispatch();
   const event = useSelector(getDisplayedEvent);
+  const dispatch = useDispatch();
 
-  const eventTimeDescription = event ? getTimeDescription(event.startDate, event.endDate) : null;
+  if (!event) return null;
+
+  const eventTimeDescription = getTimeDescription(event.startDate, event.endDate);
 
   return (
     <ModalContainer closeModal={closePreviewModal}>
-      <h2 className={styles.title}>{event ? event.title : ""}</h2>
+      <h2 className={styles.title}>{event.title}</h2>
       <p className={styles.time}>{eventTimeDescription}</p>
       <Button
         onClick={() => {
-          dispatch(deleteEvent(event ? event.id : ""));
+          dispatch(deleteEvent(event.id));
           dispatch(closePreviewModal());
         }}
         styleName={"danger"}
