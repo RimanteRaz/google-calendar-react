@@ -137,3 +137,20 @@ export const getDateWithDiffHour = (date: Date, hour: number) => {
   newDate.setHours(hour, 0, 0);
   return newDate;
 };
+
+export const getTimeDescription = (startDate: Date, endDate: Date) => {
+  const dateFormatOptions: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  };
+  const dateText = new Intl.DateTimeFormat("en-GB", dateFormatOptions).format(startDate);
+  const timeFormatOptions: Intl.DateTimeFormatOptions = {
+    hour12: true,
+    hour: "numeric",
+    minute: "2-digit",
+  };
+  const startTimeText = new Intl.DateTimeFormat("en-GB", timeFormatOptions).format(startDate);
+  const endTimeText = new Intl.DateTimeFormat("en-GB", timeFormatOptions).format(endDate);
+  return `${dateText} ⋅ ${startTimeText.replace(" ", "")} – ${endTimeText.replace(" ", "")}`;
+};

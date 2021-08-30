@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { openPreviewModal } from "../../../../actions";
 import { getOverlapingEvents } from "../../../../selectors";
 import {
   get12HourTime,
@@ -10,14 +11,20 @@ import { Event, sortEvents, TIME_SLOT_HEIGHT } from "../../../../utilities/event
 import styles from "./EventBox.module.scss";
 
 export const EventBox = ({ event }: EventBoxProps) => {
+  const dispatch = useDispatch();
+
   const overlapingEvents = useSelector(getOverlapingEvents(event.startDate, event.endDate));
-
   const timeLabel = getLabel(event.startDate, event.endDate);
-
   const style = calculatePositionStyles(event, overlapingEvents);
 
   return (
-    <div className={styles.event} style={style}>
+    <div
+      className={styles.event}
+      style={style}
+      onClick={() => {
+        dispatch(openPreviewModal(event));
+      }}
+    >
       <div className={styles.title}>{event.title}</div>
       <div className={styles.time}>{timeLabel}</div>
     </div>

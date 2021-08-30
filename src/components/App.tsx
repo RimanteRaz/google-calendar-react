@@ -1,17 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./App.module.scss";
-import { EventCreationModal } from "./event-creation-modal";
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
 import { WeekCalendar } from "./week-calendar";
 import { checkIfEventModalOpen } from "../selectors";
 import { fetchEvents } from "../actions";
 import { useEffect } from "react";
+import { checkIfEventPreviewOpen } from "../selectors/event-preview";
+import { EventPreview } from "./event-preview";
+import { EventCreate } from "./event-create";
 
 function App() {
   const isEventModalOpen = useSelector(checkIfEventModalOpen);
-  const dispatch = useDispatch();
+  const isEventPreviewOpen = useSelector(checkIfEventPreviewOpen);
 
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchEvents());
   }, []);
@@ -23,7 +26,8 @@ function App() {
         <Sidebar />
         <WeekCalendar />
       </div>
-      {isEventModalOpen && <EventCreationModal />}
+      {isEventModalOpen && <EventCreate />}
+      {isEventPreviewOpen && <EventPreview />}
     </div>
   );
 }

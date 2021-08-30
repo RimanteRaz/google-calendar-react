@@ -8,7 +8,7 @@ import { TimeInput } from "./time-input";
 import { isEndGreaterThanStart } from "../../../utilities/dates";
 import { generateEvent } from "../../../utilities/events";
 import { useDispatch } from "react-redux";
-import { closeEventModal, saveEvent } from "../../../actions";
+import { closeEventCreateModal, saveEvent } from "../../../actions";
 
 export const EventCreationForm = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ export const EventCreationForm = () => {
     if (isFormValid()) {
       const event = generateEvent(title, date, startTime, endTime);
       dispatch(saveEvent(event));
-      dispatch(closeEventModal());
+      dispatch(closeEventCreateModal());
     }
   };
 

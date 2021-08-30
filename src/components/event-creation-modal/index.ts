@@ -1,1 +1,0 @@
-export { EventCreationModal } from "./EventCreationModal";

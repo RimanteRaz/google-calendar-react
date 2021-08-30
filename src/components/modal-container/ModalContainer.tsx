@@ -1,19 +1,18 @@
-import { Button } from "../button";
 import { Close } from "@material-ui/icons";
-import styles from "./EventCreationModal.module.scss";
-import { EventCreationForm } from "./event-creation-form";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { closeEventModal } from "../../actions";
-import { MouseEvent, useRef } from "react";
+import { Action } from "redux";
+import { Button } from "../button";
+import styles from "./ModalContainer.module.scss";
 
-export const EventCreationModal = () => {
+export const ModalContainer: React.FC<ModalContainerProps> = ({ closeModal, children }) => {
   const dispatch = useDispatch();
 
   const modal = useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (event: MouseEvent) => {
+  const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
     if (modal.current && !modal.current.contains(event.target as Node)) {
-      dispatch(closeEventModal());
+      dispatch(closeModal());
     }
   };
 
@@ -26,14 +25,16 @@ export const EventCreationModal = () => {
     >
       <div className={styles.modal} ref={modal}>
         <div className={styles.header}>
-          <Button onClick={() => dispatch(closeEventModal())} styleName={"round"}>
+          <Button onClick={() => dispatch(closeModal())} styleName={"round"}>
             <Close />
           </Button>
         </div>
-        <div className={styles.body}>
-          <EventCreationForm />
-        </div>
+        <div className={styles.body}>{children}</div>
       </div>
     </div>
   );
+};
+
+type ModalContainerProps = {
+  closeModal: () => Action;
 };
