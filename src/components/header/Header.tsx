@@ -26,16 +26,20 @@ export const Header = () => {
         Today
       </Button>
 
-      <Button onClick={() => dispatch(previousWeek())} styleName={"round"}>
+      <Button
+        onClick={() => dispatch(previousWeek())}
+        styleName={"round"}
+        testid="previous-week-button"
+      >
         <NavigateBefore />
       </Button>
 
-      <Button onClick={() => dispatch(nextWeek())} styleName={"round"}>
+      <Button onClick={() => dispatch(nextWeek())} styleName={"round"} testid="next-week-button">
         <NavigateNext />
       </Button>
 
       <div className={styles.currentDate}>
-        <span>{getMonthAndYear(selectedDay)}</span>
+        <span data-testid="week-date">{getMonthAndYear(selectedDay)}</span>
       </div>
     </header>
   );

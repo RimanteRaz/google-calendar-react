@@ -10,7 +10,11 @@ export const Sidebar = () => {
 
   return (
     <aside className={styles.sidebar}>
-      <Button onClick={() => dispatch(openEventCreateModal())} styleName={"big"}>
+      <Button
+        onClick={() => dispatch(openEventCreateModal())}
+        styleName={"big"}
+        testid={"create-button"}
+      >
         <AddIcon style={{ marginRight: "8px" }} />
         <span>Create</span>
       </Button>

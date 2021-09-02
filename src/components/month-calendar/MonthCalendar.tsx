@@ -32,7 +32,9 @@ export const MonthCalendar = () => {
     <div className={styles.sidebarMonthView}>
       <Header date={displayDate} setDisplayDate={setDisplayDate} />
       <Weekdays />
-      <div className={styles.days}>{days}</div>
+      <div className={styles.days} data-testid="month-calendar-days">
+        {days}
+      </div>
     </div>
   );
 };

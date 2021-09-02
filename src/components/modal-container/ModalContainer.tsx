@@ -5,7 +5,7 @@ import { Action } from "redux";
 import { Button } from "../button";
 import styles from "./ModalContainer.module.scss";
 
-export const ModalContainer: React.FC<ModalContainerProps> = ({ closeModal, children }) => {
+export const ModalContainer: React.FC<ModalContainerProps> = ({ closeModal, children, testid }) => {
   const dispatch = useDispatch();
 
   const modal = useRef<HTMLDivElement>(null);
@@ -22,6 +22,7 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({ closeModal, chil
       onClick={event => {
         handleClickOutside(event);
       }}
+      data-testid={testid}
     >
       <div className={styles.modal} ref={modal}>
         <div className={styles.header}>
@@ -37,4 +38,5 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({ closeModal, chil
 
 type ModalContainerProps = {
   closeModal: () => Action;
+  testid?: string;
 };

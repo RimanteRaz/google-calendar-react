@@ -1,8 +1,8 @@
 import styles from "./Button.module.scss";
 
-export const Button: React.FC<ButtonProps> = ({ onClick, styleName, children }) => {
+export const Button: React.FC<ButtonProps> = ({ onClick, styleName, children, testid }) => {
   return (
-    <button onClick={onClick} className={styles[styleName]}>
+    <button data-testid={testid} onClick={onClick} className={styles[styleName]}>
       {children}
     </button>
   );
@@ -11,4 +11,5 @@ export const Button: React.FC<ButtonProps> = ({ onClick, styleName, children }) 
 type ButtonProps = {
   onClick: () => void;
   styleName: "round" | "squareOutline" | "squareFill" | "big" | "danger";
+  testid?: string;
 };
