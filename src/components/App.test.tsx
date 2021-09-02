@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { wrapInAProvider } from "../../tests/test-utils";
+import { changeInputValue, wrapInAProvider } from "../../tests/test-utils";
 import App from "./App";
 
 describe("App", () => {
@@ -10,6 +10,45 @@ describe("App", () => {
 
       const eventCreateModal = screen.queryByTestId("event-create-modal");
       expect(eventCreateModal).not.toBeInTheDocument();
+    });
+
+    describe("on form submit", () => {
+      it("should not render a new event when end time is incorrect", () => {
+        const partialState = { eventCreateModal: { isOpen: true } };
+        render(wrapInAProvider(<App />, partialState));
+
+        const eventTitle = "Test event title";
+        expect(screen.queryByText(eventTitle)).not.toBeInTheDocument();
+
+        changeInputValue("title-input", eventTitle);
+        changeInputValue("date-input", "2021-09-01");
+        changeInputValue("start-time-input", "12:00");
+        changeInputValue("end-time-input", "10:00");
+
+        fireEvent.submit(screen.getByTestId("event-creation-form"));
+
+        expect(screen.queryByText(eventTitle)).not.toBeInTheDocument();
+        expect(
+          screen.getByText("End time has to be greater than start time")
+        ).toBeInTheDocument();
+      });
+
+      it("should render a new event when inputs are correct", () => {
+        const partialState = { eventCreateModal: { isOpen: true } };
+        render(wrapInAProvider(<App />, partialState));
+
+        const eventTitle = "Test event title";
+        expect(screen.queryByText(eventTitle)).not.toBeInTheDocument();
+
+        changeInputValue("title-input", eventTitle);
+        changeInputValue("date-input", "2021-09-01");
+        changeInputValue("start-time-input", "12:00");
+        changeInputValue("end-time-input", "14:00");
+
+        fireEvent.submit(screen.getByTestId("event-creation-form"));
+
+        expect(screen.getByText(eventTitle)).toBeInTheDocument;
+      });
     });
   });
 

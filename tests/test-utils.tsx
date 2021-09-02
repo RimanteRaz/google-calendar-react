@@ -1,4 +1,5 @@
 import { configureStore, Store } from "@reduxjs/toolkit";
+import { screen, fireEvent } from "@testing-library/react";
 import { ReactChild } from "react";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -12,15 +13,19 @@ export const templateState = {
   eventPreview: { isOpen: false, eventDisplayed: null },
 };
 
-const getMockStore = (state: State) => {
+const getMockStore = (state?: Partial<State>) => {
   return configureStore({
     reducer: rootReducer,
     middleware: [thunk],
-    preloadedState: state,
+    preloadedState: { ...templateState, ...state },
   });
 };
 
-export const wrapInAProvider = (component: ReactChild, state?: State) => {
-  const mockStore = getMockStore(state || templateState);
-  return <Provider store={mockStore}>{component}</Provider>;
+export const wrapInAProvider = (children: ReactChild, state?: Partial<State>) => {
+  const mockStore = getMockStore(state);
+  return <Provider store={mockStore}>{children}</Provider>;
+};
+
+export const changeInputValue = (id: string, newValue: string) => {
+  fireEvent.input(screen.getByTestId(id), { target: { value: newValue } });
 };

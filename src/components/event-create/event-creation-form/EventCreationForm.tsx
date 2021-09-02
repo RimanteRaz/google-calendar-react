@@ -72,13 +72,18 @@ export const EventCreationForm = () => {
   };
 
   return (
-    <form className={styles.createEventForm} onSubmit={e => handleOnSubmit(e)}>
+    <form
+      className={styles.createEventForm}
+      onSubmit={e => handleOnSubmit(e)}
+      data-testid={"event-creation-form"}
+    >
       <div className={styles.inputsAndDecoration}>
         <TitleInput
           value={title}
           setValue={setTitle}
           errorMessage={titleError}
           validateInput={validateTitleInput}
+          testid={"title-input"}
         />
         <div className={styles.dateTimeSelect}>
           <div className={styles.clockIcon}>
@@ -90,6 +95,7 @@ export const EventCreationForm = () => {
             setValue={setDate}
             errorMessage={dateError}
             validateInput={validateDateInput}
+            testid={"date-input"}
           />
 
           <TimeInput
@@ -98,6 +104,7 @@ export const EventCreationForm = () => {
             setValue={setStartTime}
             errorMessage={startTimeError}
             validateInput={validateStartTimeInput}
+            testid={"start-time-input"}
           />
 
           <TimeInput
@@ -106,6 +113,7 @@ export const EventCreationForm = () => {
             setValue={setEndTime}
             errorMessage={endTimeError}
             validateInput={validateEndTimeInput}
+            testid={"end-time-input"}
           />
         </div>
       </div>

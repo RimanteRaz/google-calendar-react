@@ -1,7 +1,13 @@
 import classNames from "classnames";
 import styles from "./TitleInput.module.scss";
 
-export const TitleInput = ({ value, setValue, errorMessage, validateInput }: TitleInputProps) => {
+export const TitleInput = ({
+  value,
+  setValue,
+  errorMessage,
+  validateInput,
+  testid,
+}: TitleInputProps) => {
   const inputClasses = classNames(styles.eventTitleInput, {
     [styles.error]: errorMessage.length > 0,
   });
@@ -16,8 +22,11 @@ export const TitleInput = ({ value, setValue, errorMessage, validateInput }: Tit
         value={value}
         onChange={e => setValue(e.target.value)}
         onBlur={e => validateInput(e.target.value)}
+        data-testid={testid}
       />
-      {errorMessage.length > 0 && <span className={styles.errorMessage}>{errorMessage}</span>}
+      {errorMessage.length > 0 && (
+        <span className={styles.errorMessage}>{errorMessage}</span>
+      )}
     </div>
   );
 };
@@ -27,4 +36,5 @@ type TitleInputProps = {
   setValue: (value: string) => void;
   errorMessage: string;
   validateInput: (value: string) => void;
+  testid?: string;
 };
