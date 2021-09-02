@@ -12,12 +12,6 @@ export const templateState = {
   eventPreview: { isOpen: false, eventDisplayed: null },
 };
 
-export const mockStore = configureStore({
-  reducer: rootReducer,
-  middleware: [thunk],
-  preloadedState: templateState,
-});
-
 const getMockStore = (state: State) => {
   return configureStore({
     reducer: rootReducer,
@@ -26,7 +20,7 @@ const getMockStore = (state: State) => {
   });
 };
 
-export const wrapInAProvider = (children: ReactChild, state?: State) => {
-  const mockStore = state ? getMockStore(state) : getMockStore(templateState);
-  return <Provider store={mockStore}>{children}</Provider>;
+export const wrapInAProvider = (component: ReactChild, state?: State) => {
+  const mockStore = getMockStore(state || templateState);
+  return <Provider store={mockStore}>{component}</Provider>;
 };

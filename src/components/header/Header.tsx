@@ -29,7 +29,7 @@ export const Header = () => {
       <Button
         onClick={() => dispatch(previousWeek())}
         styleName={"round"}
-        testid="previous-week-button"
+        dataTestid="previous-week-button"
       >
         <NavigateBefore />
       </Button>
@@ -37,7 +37,7 @@ export const Header = () => {
       <Button
         onClick={() => dispatch(nextWeek())}
         styleName={"round"}
-        testid="next-week-button"
+        dataTestid="next-week-button"
       >
         <NavigateNext />
       </Button>

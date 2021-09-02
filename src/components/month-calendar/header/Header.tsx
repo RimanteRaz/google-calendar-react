@@ -12,7 +12,7 @@ export const Header = ({ date, setDisplayDate }: HeaderProps) => {
 
   return (
     <div className={styles.header}>
-      <span className={styles.currentMonth} data-testid={"month-name"}>
+      <span className={styles.currentMonth} data-testid="month-name">
         {headerDate}
       </span>
 
@@ -21,7 +21,7 @@ export const Header = ({ date, setDisplayDate }: HeaderProps) => {
           <NavigateBefore />
         </Button>
 
-        <Button onClick={showNextMonth} styleName="round" testid={"next-month-button"}>
+        <Button onClick={showNextMonth} styleName="round" dataTestid="next-month-button">
           <NavigateNext />
         </Button>
       </div>

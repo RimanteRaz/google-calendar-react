@@ -4,7 +4,7 @@ import { EventCreationForm } from "./event-creation-form";
 
 export const EventCreate = () => {
   return (
-    <ModalContainer closeModal={closeEventCreateModal} testid={"event-create-modal"}>
+    <ModalContainer closeModal={closeEventCreateModal} dataTestid="event-create-modal">
       <EventCreationForm />
     </ModalContainer>
   );

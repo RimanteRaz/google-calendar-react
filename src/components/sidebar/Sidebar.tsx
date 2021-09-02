@@ -13,7 +13,7 @@ export const Sidebar = () => {
       <Button
         onClick={() => dispatch(openEventCreateModal())}
         styleName={"big"}
-        testid={"create-button"}
+        dataTestid="create-button"
       >
         <AddIcon style={{ marginRight: "8px" }} />
         <span>Create</span>
