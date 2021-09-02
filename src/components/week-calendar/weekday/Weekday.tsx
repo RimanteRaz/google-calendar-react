@@ -12,7 +12,7 @@ export const Weekday = ({ date }: WeekdayProps) => {
   return (
     <div className={dayClass}>
       <span>{weekdayLabel}</span>
-      <div>{dayNumber}</div>
+      <div data-testid={`weekday-${weekdayLabel.toLowerCase()}`}>{dayNumber}</div>
     </div>
   );
 };

@@ -12,14 +12,16 @@ export const Header = ({ date, setDisplayDate }: HeaderProps) => {
 
   return (
     <div className={styles.header}>
-      <span className={styles.currentMonth}>{headerDate}</span>
+      <span className={styles.currentMonth} data-testid="month-name">
+        {headerDate}
+      </span>
 
       <div className={styles.navigation}>
         <Button onClick={showPreviousMonth} styleName="round">
           <NavigateBefore />
         </Button>
 
-        <Button onClick={showNextMonth} styleName="round">
+        <Button onClick={showNextMonth} styleName="round" dataTestid="next-month-button">
           <NavigateNext />
         </Button>
       </div>
