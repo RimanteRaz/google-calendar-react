@@ -34,7 +34,11 @@ export const Header = () => {
         <NavigateBefore />
       </Button>
 
-      <Button onClick={() => dispatch(nextWeek())} styleName={"round"} testid="next-week-button">
+      <Button
+        onClick={() => dispatch(nextWeek())}
+        styleName={"round"}
+        testid="next-week-button"
+      >
         <NavigateNext />
       </Button>
 
