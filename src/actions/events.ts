@@ -9,8 +9,14 @@ export const SAVE_EVENTS = "SAVE_EVENTS";
 export const DELETE_EVENT = "DELETE_EVENT";
 
 export const saveEventToState = (event: Event) => ({ type: SAVE_EVENT, payload: event });
-export const saveEventsToState = (events: Event[]) => ({ type: SAVE_EVENTS, payload: events });
-export const deleteEventFromState = (eventID: string) => ({ type: DELETE_EVENT, payload: eventID });
+export const saveEventsToState = (events: Event[]) => ({
+  type: SAVE_EVENTS,
+  payload: events,
+});
+export const deleteEventFromState = (eventID: string) => ({
+  type: DELETE_EVENT,
+  payload: eventID,
+});
 
 export const saveEvent =
   (event: Event): ThunkAction<void, State, null, PayloadAction<Event>> =>

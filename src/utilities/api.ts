@@ -10,7 +10,8 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(event),
     }),
-  deleteEvent: (eventID: string) => safeFetch(`${EVENTS_DB_URL}/${eventID}`, { method: "DELETE" }),
+  deleteEvent: (eventID: string) =>
+    safeFetch(`${EVENTS_DB_URL}/${eventID}`, { method: "DELETE" }),
 };
 
 export const safeFetch = async (url: string, options: RequestInit) => {

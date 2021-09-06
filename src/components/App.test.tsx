@@ -2,10 +2,19 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { changeInputValue, wrapInAProvider } from "../../tests/test-utils";
 import App from "./App";
+import fetch from "jest-fetch-mock";
+import { Event, SerializedEvent } from "../utilities/events";
 
 describe("App", () => {
+  const EVENT_TITLE = "Test event title";
+
   describe("Event creation modal", () => {
+    beforeEach(() => {
+      fetch.resetMocks();
+    });
+
     it("should not be open on first render", () => {
+      fetch.mockResponse(JSON.stringify([]));
       render(wrapInAProvider(<App />));
 
       const eventCreateModal = screen.queryByTestId("event-create-modal");
@@ -13,47 +22,74 @@ describe("App", () => {
     });
 
     describe("on form submit", () => {
+      beforeEach(() => {
+        fetch.resetMocks();
+      });
+
       it("should not render a new event when end time is incorrect", () => {
+        fetch.mockResponse(JSON.stringify([]));
         const partialState = { eventCreateModal: { isOpen: true } };
         render(wrapInAProvider(<App />, partialState));
 
-        const eventTitle = "Test event title";
-        expect(screen.queryByText(eventTitle)).not.toBeInTheDocument();
+        expect(screen.queryByText(EVENT_TITLE)).not.toBeInTheDocument();
 
-        changeInputValue("title-input", eventTitle);
+        changeInputValue("title-input", EVENT_TITLE);
         changeInputValue("date-input", "2021-09-01");
         changeInputValue("start-time-input", "12:00");
         changeInputValue("end-time-input", "10:00");
 
         fireEvent.submit(screen.getByTestId("event-creation-form"));
 
-        expect(screen.queryByText(eventTitle)).not.toBeInTheDocument();
+        expect(screen.queryByText(EVENT_TITLE)).not.toBeInTheDocument();
         expect(
           screen.getByText("End time has to be greater than start time")
         ).toBeInTheDocument();
       });
 
       it("should render a new event when inputs are correct", () => {
+        fetch.mockResponse(JSON.stringify([]));
         const partialState = { eventCreateModal: { isOpen: true } };
         render(wrapInAProvider(<App />, partialState));
 
-        const eventTitle = "Test event title";
-        expect(screen.queryByText(eventTitle)).not.toBeInTheDocument();
+        expect(screen.queryByText(EVENT_TITLE)).not.toBeInTheDocument();
+        expect(fetch).toHaveBeenCalledTimes(1);
 
-        changeInputValue("title-input", eventTitle);
+        changeInputValue("title-input", EVENT_TITLE);
         changeInputValue("date-input", "2021-09-01");
         changeInputValue("start-time-input", "12:00");
         changeInputValue("end-time-input", "14:00");
 
         fireEvent.submit(screen.getByTestId("event-creation-form"));
 
-        expect(screen.getByText(eventTitle)).toBeInTheDocument;
+        expect(screen.getByText(EVENT_TITLE)).toBeInTheDocument;
+        expect(fetch).toHaveBeenCalledTimes(2);
       });
     });
   });
 
+  describe("Event preview modal", () => {
+    beforeEach(() => {
+      fetch.resetMocks();
+    });
+
+    it("should display event info when clicked on event", () => {
+      const mockSerializedEvent: SerializedEvent = {
+        id: "123",
+        title: EVENT_TITLE,
+        startDate: "2021-09-01W12:00",
+        endDate: "2021-09-01W14:00",
+      };
+      fetch.mockResponse(JSON.stringify([mockSerializedEvent]));
+    });
+  });
+
   describe("Header", () => {
+    beforeEach(() => {
+      fetch.resetMocks();
+    });
+
     it("should render next week days when next week button is clicked", () => {
+      fetch.mockResponse(JSON.stringify([]));
       render(wrapInAProvider(<App />));
 
       const nextWeekButton = screen.getByTestId("next-week-button");
@@ -69,6 +105,7 @@ describe("App", () => {
     });
 
     it("should render previous week days when previous week button is clicked", () => {
+      fetch.mockResponse(JSON.stringify([]));
       render(wrapInAProvider(<App />));
 
       const previousWeekButton = screen.getByTestId("previous-week-button");
@@ -85,7 +122,12 @@ describe("App", () => {
   });
 
   describe("Sidebar", () => {
+    beforeEach(() => {
+      fetch.resetMocks();
+    });
+
     it("should open event create modal when create button is clicked", () => {
+      fetch.mockResponse(JSON.stringify([]));
       render(wrapInAProvider(<App />));
 
       const createButton = screen.getByTestId("create-button");
@@ -96,7 +138,12 @@ describe("App", () => {
     });
 
     describe("when clicking on September 8th button", () => {
+      beforeEach(() => {
+        fetch.resetMocks();
+      });
+
       it("should display the second week of September", () => {
+        fetch.mockResponse(JSON.stringify([]));
         render(wrapInAProvider(<App />));
 
         const calendarDays = screen.getByTestId("month-calendar-days");

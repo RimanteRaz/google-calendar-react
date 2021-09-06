@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { changeInputValue, wrapInAProvider } from "../../../../tests/test-utils";
 import { EventCreationForm } from "./EventCreationForm";
+import fetch from "jest-fetch-mock";
 
 describe("EventCreationForm", () => {
   it("should render the input fields", () => {
@@ -23,7 +24,8 @@ describe("EventCreationForm", () => {
       changeInputValue("start-time-input", "12:00");
       changeInputValue("end-time-input", "14:00");
     };
-    describe("when a field is empty", () => {
+
+    describe("when one field is left empty", () => {
       beforeEach(() => {
         render(wrapInAProvider(<EventCreationForm />));
         enterValidField();
@@ -52,7 +54,7 @@ describe("EventCreationForm", () => {
     });
 
     describe("when start time is larger than end time", () => {
-      it("", () => {
+      it("should show error message", () => {
         render(wrapInAProvider(<EventCreationForm />));
 
         changeInputValue("title-input", validTitleInput);
@@ -63,6 +65,22 @@ describe("EventCreationForm", () => {
         fireEvent.submit(screen.getByTestId("event-creation-form"));
         expect(screen.getByText("End time has to be greater than start time"))
           .toBeInTheDocument;
+      });
+    });
+
+    describe("when all fields are walid", () => {
+      beforeEach(() => {
+        fetch.resetMocks();
+      });
+
+      it("should send a fetch request", () => {
+        fetch.mockResponse(JSON.stringify([]));
+
+        render(wrapInAProvider(<EventCreationForm />));
+        enterValidField();
+        fireEvent.submit(screen.getByTestId("event-creation-form"));
+
+        expect(fetch).toHaveBeenCalledTimes(1);
       });
     });
   });
