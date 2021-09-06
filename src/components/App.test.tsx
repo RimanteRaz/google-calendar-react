@@ -1,9 +1,9 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { changeInputValue, wrapInAProvider } from "../../tests/test-utils";
 import App from "./App";
 import fetch from "jest-fetch-mock";
-import { Event, SerializedEvent } from "../utilities/events";
+import { Event } from "../utilities/events";
 
 describe("App", () => {
   const EVENT_TITLE = "Test event title";
@@ -68,18 +68,45 @@ describe("App", () => {
   });
 
   describe("Event preview modal", () => {
+    const mockEvent: Event = {
+      id: "123",
+      title: EVENT_TITLE,
+      startDate: new Date("2021-09-01 12:00"),
+      endDate: new Date("2021-09-01 14:00"),
+    };
+
     beforeEach(() => {
       fetch.resetMocks();
     });
 
-    it("should display event info when clicked on event", () => {
-      const mockSerializedEvent: SerializedEvent = {
-        id: "123",
-        title: EVENT_TITLE,
-        startDate: "2021-09-01W12:00",
-        endDate: "2021-09-01W14:00",
-      };
-      fetch.mockResponse(JSON.stringify([mockSerializedEvent]));
+    it("should display event info when clicked on event", async () => {
+      fetch.mockResponse(JSON.stringify([mockEvent]));
+      render(wrapInAProvider(<App />));
+
+      await waitFor(() => {
+        expect(screen.getByTestId("event-123")).toBeInTheDocument;
+      });
+
+      fireEvent.click(screen.getByTestId("event-123"));
+
+      expect(screen.getByTestId("event-preview-modal")).toBeInTheDocument;
+      expect(screen.getByTestId("event-preview-modal").innerHTML).toContain(EVENT_TITLE);
+    });
+
+    it("should delete an event when delete button is clicked", async () => {
+      fetch.mockResponse(JSON.stringify([mockEvent]));
+      render(wrapInAProvider(<App />));
+
+      await waitFor(() => {
+        expect(screen.getByTestId("event-123")).toBeInTheDocument;
+      });
+
+      fireEvent.click(screen.getByTestId("event-123"));
+      fireEvent.click(screen.getByText("Delete"));
+
+      expect(screen.queryByTestId("event-preview-modal")).not.toBeInTheDocument;
+      expect(screen.queryByTestId("event-123")).not.toBeInTheDocument;
+      expect(fetch).toHaveBeenCalledTimes(2);
     });
   });
 

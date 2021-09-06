@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { getEventsOfThisHour } from "../../../../selectors";
-import { getDateWithDiffHour } from "../../../../utilities/dates";
+import { getDateWithDiffHour, isSameDay } from "../../../../utilities/dates";
 import { Event } from "../../../../utilities/events";
 import { EventBox } from "../event-box";
 import styles from "./TimeSlot.module.scss";
@@ -13,7 +13,7 @@ export const TimeSlot = ({ date, hour }: TimeSlotProps) => {
   return (
     <div className={styles.timeSlot}>
       {events.map((event: Event) => (
-        <EventBox key={event.id} event={event} />
+        <EventBox key={event.id} event={event} dataTestid={`event-${event.id}`} />
       ))}
     </div>
   );
