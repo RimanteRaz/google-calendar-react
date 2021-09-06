@@ -32,7 +32,7 @@ describe("EventCreationForm", () => {
       });
 
       afterEach(() => {
-        fireEvent.submit(screen.getByTestId("event-creation-form"));
+        fireEvent.click(screen.getByTestId("save-event-button"));
         expect(screen.getByText("This field is required")).toBeInTheDocument;
       });
 
@@ -62,7 +62,7 @@ describe("EventCreationForm", () => {
         changeInputValue("start-time-input", "12:00");
         changeInputValue("end-time-input", "10:00");
 
-        fireEvent.submit(screen.getByTestId("event-creation-form"));
+        fireEvent.click(screen.getByTestId("save-event-button"));
         expect(screen.getByText("End time has to be greater than start time"))
           .toBeInTheDocument;
       });
@@ -78,7 +78,7 @@ describe("EventCreationForm", () => {
 
         render(wrapInAProvider(<EventCreationForm />));
         enterValidField();
-        fireEvent.submit(screen.getByTestId("event-creation-form"));
+        fireEvent.click(screen.getByTestId("save-event-button"));
 
         expect(fetch).toHaveBeenCalledTimes(1);
       });

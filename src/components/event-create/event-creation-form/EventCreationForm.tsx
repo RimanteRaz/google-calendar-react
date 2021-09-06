@@ -118,7 +118,11 @@ export const EventCreationForm = () => {
         </div>
       </div>
       <div className={styles.buttons}>
-        <Button onClick={() => {}} styleName={"squareFill"}>
+        <Button
+          onClick={() => {}}
+          styleName={"squareFill"}
+          dataTestid="save-event-button"
+        >
           Save
         </Button>
       </div>

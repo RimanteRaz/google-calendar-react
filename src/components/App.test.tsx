@@ -35,7 +35,7 @@ describe("App", () => {
         changeInputValue("start-time-input", "12:00");
         changeInputValue("end-time-input", "10:00");
 
-        fireEvent.submit(screen.getByTestId("event-creation-form"));
+        fireEvent.click(screen.getByTestId("save-event-button"));
 
         expect(screen.queryByText(EVENT_TITLE)).not.toBeInTheDocument();
         expect(
@@ -51,7 +51,7 @@ describe("App", () => {
         changeInputValue("start-time-input", "12:00");
         changeInputValue("end-time-input", "14:00");
 
-        fireEvent.submit(screen.getByTestId("event-creation-form"));
+        fireEvent.click(screen.getByTestId("save-event-button"));
 
         expect(screen.getByText(EVENT_TITLE)).toBeInTheDocument;
         expect(fetch).toHaveBeenCalledTimes(2);
