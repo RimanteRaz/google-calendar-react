@@ -11,10 +11,10 @@ describe("App", () => {
   describe("Event creation modal", () => {
     beforeEach(() => {
       fetch.resetMocks();
+      fetch.mockResponse(JSON.stringify([]));
     });
 
     it("should not be open on first render", () => {
-      fetch.mockResponse(JSON.stringify([]));
       render(wrapInAProvider(<App />));
 
       const eventCreateModal = screen.queryByTestId("event-create-modal");
@@ -23,16 +23,13 @@ describe("App", () => {
 
     describe("on form submit", () => {
       beforeEach(() => {
-        fetch.resetMocks();
-      });
-
-      it("should not render a new event when end time is incorrect", () => {
-        fetch.mockResponse(JSON.stringify([]));
         const partialState = { eventCreateModal: { isOpen: true } };
         render(wrapInAProvider(<App />, partialState));
 
         expect(screen.queryByText(EVENT_TITLE)).not.toBeInTheDocument();
+      });
 
+      it("should not save an event when end time is incorrect", () => {
         changeInputValue("title-input", EVENT_TITLE);
         changeInputValue("date-input", "2021-09-01");
         changeInputValue("start-time-input", "12:00");
@@ -47,11 +44,6 @@ describe("App", () => {
       });
 
       it("should render a new event when inputs are correct", () => {
-        fetch.mockResponse(JSON.stringify([]));
-        const partialState = { eventCreateModal: { isOpen: true } };
-        render(wrapInAProvider(<App />, partialState));
-
-        expect(screen.queryByText(EVENT_TITLE)).not.toBeInTheDocument();
         expect(fetch).toHaveBeenCalledTimes(1);
 
         changeInputValue("title-input", EVENT_TITLE);
@@ -75,12 +67,10 @@ describe("App", () => {
       endDate: new Date("2021-09-01 14:00"),
     };
 
-    beforeEach(() => {
+    beforeEach(async () => {
       fetch.resetMocks();
-    });
-
-    it("should display event info when clicked on event", async () => {
       fetch.mockResponse(JSON.stringify([mockEvent]));
+
       render(wrapInAProvider(<App />));
 
       await waitFor(() => {
@@ -88,20 +78,14 @@ describe("App", () => {
       });
 
       fireEvent.click(screen.getByTestId("event-123"));
+    });
 
+    it("should display event info when clicked on event", () => {
       expect(screen.getByTestId("event-preview-modal")).toBeInTheDocument;
       expect(screen.getByTestId("event-preview-modal").innerHTML).toContain(EVENT_TITLE);
     });
 
-    it("should delete an event when delete button is clicked", async () => {
-      fetch.mockResponse(JSON.stringify([mockEvent]));
-      render(wrapInAProvider(<App />));
-
-      await waitFor(() => {
-        expect(screen.getByTestId("event-123")).toBeInTheDocument;
-      });
-
-      fireEvent.click(screen.getByTestId("event-123"));
+    it("should delete an event when delete button is clicked", () => {
       fireEvent.click(screen.getByText("Delete"));
 
       expect(screen.queryByTestId("event-preview-modal")).not.toBeInTheDocument;
@@ -113,12 +97,11 @@ describe("App", () => {
   describe("Header", () => {
     beforeEach(() => {
       fetch.resetMocks();
+      fetch.mockResponse(JSON.stringify([]));
+      render(wrapInAProvider(<App />));
     });
 
     it("should render next week days when next week button is clicked", () => {
-      fetch.mockResponse(JSON.stringify([]));
-      render(wrapInAProvider(<App />));
-
       const nextWeekButton = screen.getByTestId("next-week-button");
       fireEvent.click(nextWeekButton);
 
@@ -132,9 +115,6 @@ describe("App", () => {
     });
 
     it("should render previous week days when previous week button is clicked", () => {
-      fetch.mockResponse(JSON.stringify([]));
-      render(wrapInAProvider(<App />));
-
       const previousWeekButton = screen.getByTestId("previous-week-button");
       fireEvent.click(previousWeekButton);
 
@@ -151,12 +131,11 @@ describe("App", () => {
   describe("Sidebar", () => {
     beforeEach(() => {
       fetch.resetMocks();
+      fetch.mockResponse(JSON.stringify([]));
+      render(wrapInAProvider(<App />));
     });
 
     it("should open event create modal when create button is clicked", () => {
-      fetch.mockResponse(JSON.stringify([]));
-      render(wrapInAProvider(<App />));
-
       const createButton = screen.getByTestId("create-button");
       fireEvent.click(createButton);
 
@@ -165,14 +144,7 @@ describe("App", () => {
     });
 
     describe("when clicking on September 8th button", () => {
-      beforeEach(() => {
-        fetch.resetMocks();
-      });
-
       it("should display the second week of September", () => {
-        fetch.mockResponse(JSON.stringify([]));
-        render(wrapInAProvider(<App />));
-
         const calendarDays = screen.getByTestId("month-calendar-days");
         const septemberEight = calendarDays.children[10];
         fireEvent.click(septemberEight);
