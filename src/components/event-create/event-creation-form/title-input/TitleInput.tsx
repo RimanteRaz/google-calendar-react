@@ -6,7 +6,7 @@ export const TitleInput = ({
   setValue,
   errorMessage,
   validateInput,
-  testid,
+  dataTestid,
 }: TitleInputProps) => {
   const inputClasses = classNames(styles.eventTitleInput, {
     [styles.error]: errorMessage.length > 0,
@@ -22,7 +22,7 @@ export const TitleInput = ({
         value={value}
         onChange={e => setValue(e.target.value)}
         onBlur={e => validateInput(e.target.value)}
-        data-testid={testid}
+        data-testid={dataTestid}
       />
       {errorMessage.length > 0 && (
         <span className={styles.errorMessage}>{errorMessage}</span>
@@ -36,5 +36,5 @@ type TitleInputProps = {
   setValue: (value: string) => void;
   errorMessage: string;
   validateInput: (value: string) => void;
-  testid?: string;
+  dataTestid?: string;
 };

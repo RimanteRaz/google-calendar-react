@@ -7,7 +7,7 @@ export const TimeInput = ({
   setValue,
   errorMessage,
   validateInput,
-  testid,
+  dataTestid,
 }: TimeInputProps) => {
   const classes = classNames(styles.timeSelect, {
     [styles.error]: errorMessage.length > 0,
@@ -22,7 +22,7 @@ export const TimeInput = ({
         value={value}
         onChange={e => setValue(e.target.value)}
         onBlur={e => validateInput(e.target.value)}
-        data-testid={testid}
+        data-testid={dataTestid}
       />
       {errorMessage.length > 0 && (
         <div className={styles.errorMessage}>{errorMessage}</div>
@@ -37,5 +37,5 @@ type TimeInputProps = {
   setValue: (value: string) => void;
   errorMessage: string;
   validateInput: (value: string) => void;
-  testid?: string;
+  dataTestid?: string;
 };

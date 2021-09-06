@@ -83,7 +83,7 @@ export const EventCreationForm = () => {
           setValue={setTitle}
           errorMessage={titleError}
           validateInput={validateTitleInput}
-          testid={"title-input"}
+          dataTestid={"title-input"}
         />
         <div className={styles.dateTimeSelect}>
           <div className={styles.clockIcon}>
@@ -95,7 +95,7 @@ export const EventCreationForm = () => {
             setValue={setDate}
             errorMessage={dateError}
             validateInput={validateDateInput}
-            testid={"date-input"}
+            dataTestid={"date-input"}
           />
 
           <TimeInput
@@ -104,7 +104,7 @@ export const EventCreationForm = () => {
             setValue={setStartTime}
             errorMessage={startTimeError}
             validateInput={validateStartTimeInput}
-            testid={"start-time-input"}
+            dataTestid={"start-time-input"}
           />
 
           <TimeInput
@@ -113,7 +113,7 @@ export const EventCreationForm = () => {
             setValue={setEndTime}
             errorMessage={endTimeError}
             validateInput={validateEndTimeInput}
-            testid={"end-time-input"}
+            dataTestid={"end-time-input"}
           />
         </div>
       </div>

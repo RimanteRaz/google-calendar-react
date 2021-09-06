@@ -6,7 +6,7 @@ export const DateInput = ({
   setValue,
   errorMessage,
   validateInput,
-  testid,
+  dataTestid,
 }: DateInputProps) => {
   const classes = classNames(styles.eventDateSelect, {
     [styles.error]: errorMessage.length > 0,
@@ -21,7 +21,7 @@ export const DateInput = ({
         value={value}
         onChange={e => setValue(e.target.value)}
         onBlur={e => validateInput(e.target.value)}
-        data-testid={testid}
+        data-testid={dataTestid}
       />
       {errorMessage.length > 0 && (
         <span className={styles.errorMessage}>{errorMessage}</span>
@@ -35,5 +35,5 @@ type DateInputProps = {
   setValue: (value: string) => void;
   errorMessage: string;
   validateInput: (value: string) => void;
-  testid?: string;
+  dataTestid?: string;
 };
