@@ -20,23 +20,28 @@ export const deleteEventFromState = (eventID: string) => ({
 
 export const saveEvent =
   (event: Event): ThunkAction<void, State, null, PayloadAction<Event>> =>
-  dispatch => {
-    api.saveEvent(event);
-    dispatch(saveEventToState(event));
+  async dispatch => {
+    const response = await api.saveEvent(event);
+
+    if (response) {
+      dispatch(saveEventToState(event));
+    }
   };
 
 export const fetchEvents =
   (): ThunkAction<void, State, null, PayloadAction<Event[]>> => async dispatch => {
     const serializedEvents = await api.getEvents();
-    const events = deserializeEvents(serializedEvents);
-    dispatch(saveEventsToState(events));
+    if (serializedEvents) {
+      const events = deserializeEvents(serializedEvents);
+      dispatch(saveEventsToState(events));
+    }
   };
 
 export const deleteEvent =
   (eventID: string): ThunkAction<void, State, null, PayloadAction<string>> =>
-  dispatch => {
-    api.deleteEvent(eventID);
-    dispatch(deleteEventFromState(eventID));
+  async dispatch => {
+    const response = await api.deleteEvent(eventID);
+    if (response) dispatch(deleteEventFromState(eventID));
   };
 
 type SaveEventToState = {

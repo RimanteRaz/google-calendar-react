@@ -4,6 +4,7 @@ import { changeInputValue, wrapInAProvider } from "../../tests/test-utils";
 import App from "./App";
 import fetch from "jest-fetch-mock";
 import { Event } from "../utilities/events";
+import { EVENTS_DB_URL } from "../utilities/api";
 
 describe("App", () => {
   const EVENT_TITLE = "Test event title";
@@ -11,7 +12,7 @@ describe("App", () => {
   describe("Event creation modal", () => {
     beforeEach(() => {
       fetch.resetMocks();
-      fetch.mockResponse(JSON.stringify([]));
+      fetch.mockIf(EVENTS_DB_URL, JSON.stringify([]));
     });
 
     it("should not be open on first render", () => {
@@ -43,7 +44,8 @@ describe("App", () => {
         ).toBeInTheDocument();
       });
 
-      it("should render a new event when inputs are correct", () => {
+      it("should render a new event when inputs are correct", async () => {
+        fetch.mockIf(EVENTS_DB_URL, JSON.stringify([]));
         expect(fetch).toHaveBeenCalledTimes(1);
 
         changeInputValue("title-input", EVENT_TITLE);
@@ -52,8 +54,10 @@ describe("App", () => {
         changeInputValue("end-time-input", "14:00");
 
         fireEvent.click(screen.getByTestId("save-event-button"));
+        await waitFor(() => {
+          expect(screen.getByText(EVENT_TITLE)).toBeInTheDocument;
+        });
 
-        expect(screen.getByText(EVENT_TITLE)).toBeInTheDocument;
         expect(fetch).toHaveBeenCalledTimes(2);
       });
     });
@@ -69,7 +73,10 @@ describe("App", () => {
 
     beforeEach(async () => {
       fetch.resetMocks();
-      fetch.mockResponse(JSON.stringify([mockEvent]));
+    });
+
+    it("should display event info when clicked on event", async () => {
+      fetch.mockIf(EVENTS_DB_URL, JSON.stringify([mockEvent]));
 
       render(wrapInAProvider(<App />));
 
@@ -78,26 +85,52 @@ describe("App", () => {
       });
 
       fireEvent.click(screen.getByTestId("event-123"));
-    });
-
-    it("should display event info when clicked on event", () => {
       expect(screen.getByTestId("event-preview-modal")).toBeInTheDocument;
       expect(screen.getByTestId("event-preview-modal").innerHTML).toContain(EVENT_TITLE);
     });
 
-    it("should delete an event when delete button is clicked", () => {
-      fireEvent.click(screen.getByText("Delete"));
+    describe("when delete button is clicked", () => {
+      it("should delete an event when fetch is fullfilled", async () => {
+        fetch.mockOnceIf(EVENTS_DB_URL, JSON.stringify([mockEvent]));
+        fetch.mockOnceIf(`${EVENTS_DB_URL}/${mockEvent.id}`, "200");
 
-      expect(screen.queryByTestId("event-preview-modal")).not.toBeInTheDocument;
-      expect(screen.queryByTestId("event-123")).not.toBeInTheDocument;
-      expect(fetch).toHaveBeenCalledTimes(2);
+        render(wrapInAProvider(<App />));
+
+        await waitFor(() => {
+          expect(screen.getByTestId("event-123")).toBeInTheDocument;
+        });
+
+        fireEvent.click(screen.getByTestId("event-123"));
+        fireEvent.click(screen.getByText("Delete"));
+
+        expect(screen.queryByTestId("event-preview-modal")).not.toBeInTheDocument;
+        expect(screen.queryByTestId("event-123")).not.toBeInTheDocument;
+        expect(fetch).toHaveBeenCalledTimes(2);
+      });
+
+      it("should keep the event when fetch is rejected", async () => {
+        fetch.mockOnceIf(EVENTS_DB_URL, JSON.stringify([mockEvent]));
+        render(wrapInAProvider(<App />));
+
+        await waitFor(() => {
+          expect(screen.getByTestId("event-123")).toBeInTheDocument;
+        });
+
+        fireEvent.click(screen.getByTestId("event-123"));
+
+        fetch.mockReject(() => Promise.reject("cannot delete"));
+        fireEvent.click(screen.getByText("Delete"));
+
+        expect(fetch).toHaveBeenCalledTimes(2);
+        expect(screen.getByTestId("event-123")).toBeInTheDocument;
+      });
     });
   });
 
   describe("Header", () => {
     beforeEach(() => {
       fetch.resetMocks();
-      fetch.mockResponse(JSON.stringify([]));
+      fetch.mockIf(EVENTS_DB_URL, JSON.stringify([]));
       render(wrapInAProvider(<App />));
     });
 
@@ -131,7 +164,7 @@ describe("App", () => {
   describe("Sidebar", () => {
     beforeEach(() => {
       fetch.resetMocks();
-      fetch.mockResponse(JSON.stringify([]));
+      fetch.mockIf(EVENTS_DB_URL, JSON.stringify([]));
       render(wrapInAProvider(<App />));
     });
 

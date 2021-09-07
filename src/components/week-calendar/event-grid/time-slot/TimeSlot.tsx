@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { getEventsOfThisHour } from "../../../../selectors";
-import { getDateWithDiffHour, isSameDay } from "../../../../utilities/dates";
+import { getDateWithDiffHour } from "../../../../utilities/dates";
 import { Event } from "../../../../utilities/events";
 import { EventBox } from "../event-box";
 import styles from "./TimeSlot.module.scss";
