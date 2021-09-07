@@ -16,7 +16,12 @@ export interface SerializedEvent {
   endDate: string;
 }
 
-export const generateEvent = (title: string, date: string, startTime: string, endTime: string) => {
+export const generateEvent = (
+  title: string,
+  date: string,
+  startTime: string,
+  endTime: string
+) => {
   const startDate = new Date(date + " " + startTime);
   const endDate = new Date(date + " " + endTime);
 
@@ -41,7 +46,11 @@ export const deserializeEvents = (serializedEvents: SerializedEvent[]) => {
   });
 };
 
-export const isEventInTimeRange = (event: Event, refStartDate: Date, refEndDate: Date) => {
+export const isEventInTimeRange = (
+  event: Event,
+  refStartDate: Date,
+  refEndDate: Date
+) => {
   const eventStartTime = event.startDate.getTime();
   const eventEndTime = event.endDate.getTime();
 

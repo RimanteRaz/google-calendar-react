@@ -15,7 +15,7 @@ export const EventPreview = () => {
   const eventTimeDescription = getTimeDescription(event.startDate, event.endDate);
 
   return (
-    <ModalContainer closeModal={closePreviewModal}>
+    <ModalContainer closeModal={closePreviewModal} dataTestid="event-preview-modal">
       <h2 className={styles.title}>{event.title}</h2>
       <p className={styles.time}>{eventTimeDescription}</p>
       <Button

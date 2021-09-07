@@ -72,13 +72,18 @@ export const EventCreationForm = () => {
   };
 
   return (
-    <form className={styles.createEventForm} onSubmit={e => handleOnSubmit(e)}>
+    <form
+      className={styles.createEventForm}
+      onSubmit={e => handleOnSubmit(e)}
+      data-testid={"event-creation-form"}
+    >
       <div className={styles.inputsAndDecoration}>
         <TitleInput
           value={title}
           setValue={setTitle}
           errorMessage={titleError}
           validateInput={validateTitleInput}
+          dataTestid={"title-input"}
         />
         <div className={styles.dateTimeSelect}>
           <div className={styles.clockIcon}>
@@ -90,6 +95,7 @@ export const EventCreationForm = () => {
             setValue={setDate}
             errorMessage={dateError}
             validateInput={validateDateInput}
+            dataTestid={"date-input"}
           />
 
           <TimeInput
@@ -98,6 +104,7 @@ export const EventCreationForm = () => {
             setValue={setStartTime}
             errorMessage={startTimeError}
             validateInput={validateStartTimeInput}
+            dataTestid={"start-time-input"}
           />
 
           <TimeInput
@@ -106,11 +113,16 @@ export const EventCreationForm = () => {
             setValue={setEndTime}
             errorMessage={endTimeError}
             validateInput={validateEndTimeInput}
+            dataTestid={"end-time-input"}
           />
         </div>
       </div>
       <div className={styles.buttons}>
-        <Button onClick={() => {}} styleName={"squareFill"}>
+        <Button
+          onClick={() => {}}
+          styleName={"squareFill"}
+          dataTestid="save-event-button"
+        >
           Save
         </Button>
       </div>

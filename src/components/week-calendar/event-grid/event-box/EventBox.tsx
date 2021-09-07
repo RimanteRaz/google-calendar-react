@@ -10,10 +10,12 @@ import {
 import { Event, sortEvents, TIME_SLOT_HEIGHT } from "../../../../utilities/events";
 import styles from "./EventBox.module.scss";
 
-export const EventBox = ({ event }: EventBoxProps) => {
+export const EventBox = ({ event, dataTestid }: EventBoxProps) => {
   const dispatch = useDispatch();
 
-  const overlapingEvents = useSelector(getOverlapingEvents(event.startDate, event.endDate));
+  const overlapingEvents = useSelector(
+    getOverlapingEvents(event.startDate, event.endDate)
+  );
   const timeLabel = getLabel(event.startDate, event.endDate);
   const style = calculatePositionStyles(event, overlapingEvents);
 
@@ -21,6 +23,7 @@ export const EventBox = ({ event }: EventBoxProps) => {
     <div
       className={styles.event}
       style={style}
+      data-testid={dataTestid}
       onClick={() => {
         dispatch(openPreviewModal(event));
       }}
@@ -33,6 +36,7 @@ export const EventBox = ({ event }: EventBoxProps) => {
 
 type EventBoxProps = {
   event: Event;
+  dataTestid: string;
 };
 
 const getLabel = (startDate: Date, endDate: Date) => {
@@ -57,7 +61,11 @@ const calculateWidth = (overlapingEvents: Event[]) => {
   return parseInt((100 / overlapingEvents.length).toFixed(2));
 };
 
-const calculateLeftPosition = (event: Event, overlapingEvents: Event[], width: number) => {
+const calculateLeftPosition = (
+  event: Event,
+  overlapingEvents: Event[],
+  width: number
+) => {
   overlapingEvents.sort(sortEvents);
   const position = overlapingEvents.indexOf(event);
   return position * width;

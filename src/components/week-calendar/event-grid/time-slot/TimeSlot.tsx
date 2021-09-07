@@ -13,7 +13,7 @@ export const TimeSlot = ({ date, hour }: TimeSlotProps) => {
   return (
     <div className={styles.timeSlot}>
       {events.map((event: Event) => (
-        <EventBox key={event.id} event={event} />
+        <EventBox key={event.id} event={event} dataTestid={`event-${event.id}`} />
       ))}
     </div>
   );
